@@ -6,39 +6,57 @@
 
 #IncludeRegexTransform: 
 
-/Users/david/ /Prog2_cpplabs/cpp_coursework/Movie.cpp
+/Users/David/Offline-Movie-Database/Movie.cpp
 string
 -
 iostream
 -
 iomanip
 -
+string.h
+-
 Movie.h
-/Users/david/ /Prog2_cpplabs/cpp_coursework/Movie.h
+/Users/David/Offline-Movie-Database/Movie.h
 
-/Users/david/ /Prog2_cpplabs/cpp_coursework/Movie.h
+/Users/David/Offline-Movie-Database/Movie.h
 string
 -
 iostream
 -
 
-/Users/david/ /Prog2_cpplabs/cpp_coursework/MovieDatabase.cpp
-vector
--
+/Users/David/Offline-Movie-Database/MovieDatabase.cpp
 string
+-
+vector
 -
 iostream
 -
 MovieDatabase.h
-/Users/david/ /Prog2_cpplabs/cpp_coursework/MovieDatabase.h
+/Users/David/Offline-Movie-Database/MovieDatabase.h
 Movie.h
-/Users/david/ /Prog2_cpplabs/cpp_coursework/Movie.h
+/Users/David/Offline-Movie-Database/Movie.h
 
-/Users/david/ /Prog2_cpplabs/cpp_coursework/MovieDatabase.h
+/Users/David/Offline-Movie-Database/MovieDatabase.h
 iostream
 -
 fstream
 -
+vector
+-
 Movie.h
-/Users/david/ /Prog2_cpplabs/cpp_coursework/Movie.h
+/Users/David/Offline-Movie-Database/Movie.h
+
+/Users/David/Offline-Movie-Database/main.cpp
+string
+-
+vector
+-
+iostream
+-
+sstream
+-
+Movie.h
+/Users/David/Offline-Movie-Database/Movie.h
+MovieDatabase.h
+/Users/David/Offline-Movie-Database/MovieDatabase.h
 

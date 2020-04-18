@@ -11,6 +11,7 @@
 #include <string>
 #include <iostream>
 #include <iomanip>
+#include <string.h>
 #include "Movie.h"
 
 using namespace std;
@@ -35,10 +36,13 @@ bool operator!=(const Movie& movie1, const Movie& movie2)
     return !(movie1 == movie2);
 }
 
+
+
 istream& operator>>(istream& is, Movie& movie)
 {
     char c;
-    string title, cert, genre;
+    string title, genre, cert;
+    Certificate ce;
     int year, dur, rate;
 
     if (is >> quoted(title) >> c >> year >> c >> quoted(cert)
@@ -46,9 +50,9 @@ istream& operator>>(istream& is, Movie& movie)
     {
         if(c == ',')
         {
-            Certificate c = Movie::stringToEnum(cert);
+            //Certificate c = Movie::stringToEnum(cert);
 
-            movie = Movie(title, year, c, genre, dur, rate);
+            movie = Movie(title, year, ce, genre, dur, rate);
         }
         else
         {
@@ -58,21 +62,63 @@ istream& operator>>(istream& is, Movie& movie)
     return is;
 }
 
-Certificate Movie::stringToEnum(string str)
+istream& operator>>(istream& is, Certificate& cert)
 {
-    if(str == "NOT RATED")     { return Certificate::NOT_RATED; }
-    else if(str == "UNRATED")  { return Certificate::UNRATED; }
-    else if(str == "PG-13")    { return Certificate::PG_13; }
-    else if(str == "G")        { return Certificate::G; }
-    else if(str == "PG")       { return Certificate::PG; }
-    else if(str == "R")        { return Certificate::R; }
-    else if(str == "PASSED")   { return Certificate::PASSED; }
-    else if(str == "APPROVED") { return Certificate::APPROVED; }
-    else if(str == "N/A")      { return Certificate::N_A; }
-    else if(str == "TV-14")    { return Certificate::TV_14; }
-    else if(str == "M")        { return Certificate::M; }
-    else if(str == "X")        { return Certificate::X; }
+    string str;
+
+    is >> str;
+
+//    string certs[12] = { "NOT RATED", "UNRATED", "G", "PG", "PG-13", "R",
+//                         "APPROVED", "PASSED, N/A", "TV-14", "M", "X"};
+//
+//    for(int i = 0; i <= 12; i++)
+//    {
+//        int res = (strcmp(certs[i].c_str(), input.c_str()));
+//
+//        if (res == 0)
+//        {
+//            //cert = ((Certificate)i);
+//            cert = Certificate::TV_14;
+//        }
+//        else
+//        {
+//            cout << "Error Bro!";
+//        }
+//        cout << "ERROR BRO!" << endl;
+//    }
+//    cout << "IT got here!" << endl;
+
+    if(str == "NOT RATED")     { cert = Certificate::NOT_RATED; }
+    else if(str == "UNRATED")  { cert = Certificate::UNRATED; }
+    else if(str == "PG-13")    { cert = Certificate::PG_13; }
+    else if(str == "G")        { cert = Certificate::G; }
+    else if(str == "PG")       { cert = Certificate::PG; }
+    else if(str == "R")        { cert = Certificate::R; }
+    else if(str == "PASSED")   { cert = Certificate::PASSED; }
+    else if(str == "APPROVED") { cert = Certificate::APPROVED; }
+    else if(str == "N/A")      { cert = Certificate::N_A; }
+    else if(str == "TV-14")    { cert = Certificate::TV_14; }
+    else if(str == "M")        { cert = Certificate::M; }
+    else if(str == "X")        { cert = Certificate::X; }
+
+    return is;
 }
+
+//Certificate Movie::stringToEnum(string str)
+//{
+//    if(str == "NOT RATED")     { return Certificate::NOT_RATED; }
+//    else if(str == "UNRATED")  { return Certificate::UNRATED; }
+//    else if(str == "PG-13")    { return Certificate::PG_13; }
+//    else if(str == "G")        { return Certificate::G; }
+//    else if(str == "PG")       { return Certificate::PG; }
+//    else if(str == "R")        { return Certificate::R; }
+//    else if(str == "PASSED")   { return Certificate::PASSED; }
+//    else if(str == "APPROVED") { return Certificate::APPROVED; }
+//    else if(str == "N/A")      { return Certificate::N_A; }
+//    else if(str == "TV-14")    { return Certificate::TV_14; }
+//    else if(str == "M")        { return Certificate::M; }
+//    else if(str == "X")        { return Certificate::X; }
+//}
 
 //istream& operator>>(istream& is, const Certificate& cl)
 //{

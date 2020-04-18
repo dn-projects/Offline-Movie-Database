@@ -8,8 +8,8 @@
  Date        :
 *******************************************************************************/
 
-#include <vector>
 #include <string>
+#include <vector>
 #include <iostream>
 #include "MovieDatabase.h"
 #include "Movie.h"
@@ -18,7 +18,8 @@ using namespace std;
 
 //TODO use lambda ?
 
-istream& operator>>(istream& is, const MovieDatabase& mdb)
+template <typename T>
+istream& operator>>(istream& is, const MovieDatabase<T>& mdb)
 {
     Movie mov;
 

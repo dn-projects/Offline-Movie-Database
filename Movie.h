@@ -90,14 +90,21 @@ public :
     friend inline bool operator<(const Movie& movie1, const Movie& movie2);
 
     // overload printing out a movie (toString)
-    friend ostream& operator<<(ostream& str, const Movie& movie);
+
 
     // << overload to print string format of enum value
-    friend ostream& operator<<(ostream& os, const Certificate& cl);
-
-    friend istream& operator>>(istream& is, Movie& movie);
 
     static Certificate stringToEnum(string str);
 };
+
+
+
+ostream& operator<<(ostream& str, const Movie& movie);
+
+ostream& operator<<(ostream& os, const Certificate& cl);
+
+istream& operator>>(istream& is, Movie& movie);
+
+istream& operator>>(istream& is, Certificate& cert);
 
 #endif //CPP_COURSEWORK_MOVIE_H

@@ -9,6 +9,7 @@
 *******************************************************************************/
 
 #include <string>
+#include <vector>
 #include <iostream>
 #include <sstream>
 #include "Movie.h"
@@ -18,18 +19,18 @@ using namespace std;
 
 int main()
 {
-    MovieDatabase mdb;
+    MovieDatabase<Movie> mdb;
     Movie mov1;
 
     string line;
-    ifstream ifs("/Users/david/ /Prog2_cpplabs/cpp_coursework/oneFilm.txt");
+    ifstream ifs("/Users/David/Offline-Movie-Database/oneFilm.txt");
     if (ifs.is_open())
     {
-        while (getline (ifs, line))
+        while (getline(ifs, line))
         {
             stringstream ss;
             ss << line;
-            ss >> mdb;
+            //ss >> mdb;
         }
         ifs.close();
     }
@@ -38,9 +39,13 @@ int main()
         cout << "Unable to open file!";
     }
 
+    // "Indiana Jones and the Last Crusade",1989,"PG-13","Action/Adventure/Fantasy",127,0
+
+    cin >> mov1;
+
+    cout << mov1;
+
     //cout << mov1 << endl;
-
-
 
     //MovieDatabase >> filePath
 
@@ -60,3 +65,5 @@ int main()
 
     return 0;
 }
+
+

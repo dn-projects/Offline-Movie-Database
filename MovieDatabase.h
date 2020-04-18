@@ -12,22 +12,23 @@
 
 #include <iostream>
 #include <fstream>
+#include <vector>
 #include "Movie.h"
 
 using namespace std;
 
 //TODO use lambda ?
 
-//template <typename T>
+template <typename T>
 class MovieDatabase
 {
 private:
 
-    //vector<T> movieList;
+    vector<T> movieList;
 
 public:
 
-    friend istream& operator>>(istream& is, const MovieDatabase& mdb);
+    friend istream& operator>>(istream& is, const MovieDatabase<T>& mdb);
 
 };
 
