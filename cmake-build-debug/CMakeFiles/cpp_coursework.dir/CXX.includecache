@@ -1,0 +1,44 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/david/ /Prog2_cpplabs/cpp_coursework/Movie.cpp
+string
+-
+iostream
+-
+iomanip
+-
+Movie.h
+/Users/david/ /Prog2_cpplabs/cpp_coursework/Movie.h
+
+/Users/david/ /Prog2_cpplabs/cpp_coursework/Movie.h
+string
+-
+iostream
+-
+
+/Users/david/ /Prog2_cpplabs/cpp_coursework/MovieDatabase.cpp
+vector
+-
+string
+-
+iostream
+-
+MovieDatabase.h
+/Users/david/ /Prog2_cpplabs/cpp_coursework/MovieDatabase.h
+Movie.h
+/Users/david/ /Prog2_cpplabs/cpp_coursework/Movie.h
+
+/Users/david/ /Prog2_cpplabs/cpp_coursework/MovieDatabase.h
+iostream
+-
+fstream
+-
+Movie.h
+/Users/david/ /Prog2_cpplabs/cpp_coursework/Movie.h
+
