@@ -36,16 +36,16 @@ private :
 
 public :
 
-    Movie(string title   = ""                     , int    year   = 0 ,
-          Certificate cl = Certificate::NOT_RATED , string genre  = "",
-          int duration   = 0                      , double rating = 0 )
+    Movie(string title   = " *** EMPTY MOVIE *** " , int    year   = 0 ,
+          Certificate cl = Certificate::NOT_RATED  , string genre  = "",
+          int duration   = 0                       , double rating = 0 )
     {
-        this->title          = title;
-        this->year           = year;
-        this->c              = cl;
-        this->genre          = genre;
-        this->duration       = duration;
-        this->rating         = rating;
+        this->title    = title;
+        this->year     = year;
+        this->c        = cl;
+        this->genre    = genre;
+        this->duration = duration;
+        this->rating   = rating;
     }
 
     inline string getTitle() const

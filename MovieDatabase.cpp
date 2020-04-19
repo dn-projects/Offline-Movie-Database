@@ -9,7 +9,6 @@
 *******************************************************************************/
 
 #include <string>
-#include <vector>
 #include <iostream>
 #include "MovieDatabase.h"
 #include "Movie.h"
@@ -18,16 +17,33 @@ using namespace std;
 
 //TODO use lambda ?
 
-template <typename T>
-istream& operator>>(istream& is, const MovieDatabase<T>& mdb)
+//template <typename T>
+istream& operator>>(istream& is, MovieDatabase& mdb)
 {
     Movie mov;
 
-    is >> mov;
-
-    //push movie onto list of movie
-
-    cout << "The Movie: \n" << mov;
+    if(is >> mov)
+    {
+        mdb = MovieDatabase(mov);
+    }
+    else
+    {
+        is.clear(ios_base::failbit);
+    }
 
     return is;
+}
+
+ostream& operator<<(ostream& os, MovieDatabase& mdb)
+{
+    return os << mdb.getMovieList();
+}
+
+ostream& operator<<(ostream& os, const vector<Movie> vec)
+{
+    for ( auto const& v : vec )
+    {
+        os << v << endl;
+    }
+    return os;
 }

@@ -64,11 +64,11 @@ istream& operator>>(istream& is, Movie& movie)
 ostream& operator<<(ostream& os, const Movie& movie)
 {
     return os << "\"" << movie.getTitle()       << "\","
-              << movie.getYear()        << ",\""
-              << movie.getCertificate() << "\",\""
-              << movie.getGenre()       << "\","
-              << movie.getDuration()    << ","
-              << movie.getRating();
+                      << movie.getYear()        << ",\""
+                      << movie.getCertificate() << "\",\""
+                      << movie.getGenre()       << "\","
+                      << movie.getDuration()    << ","
+                      << movie.getRating();
 }
 
 istream& operator>>(istream& is, Certificate& cert)
