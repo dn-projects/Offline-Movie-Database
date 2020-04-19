@@ -39,7 +39,7 @@ int main()
         cout << "Unable to open file!";
     }
 
-    // "Indiana Jones and the Last Crusade",1989,"PG-13","Action/Adventure/Fantasy",127,0
+    // "Indiana Jones and the Last Crusade",1989,"R","Action/Adventure/Fantasy",127,0
 
     cin >> mov1;
 

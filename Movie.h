@@ -31,14 +31,14 @@ private :
     //set<Genre> genreSet;
     //bitfields for genre
     int    duration;
-    int    rating;
+    double rating;
     Certificate c;
 
 public :
 
     Movie(string title   = ""                     , int    year   = 0 ,
           Certificate cl = Certificate::NOT_RATED , string genre  = "",
-          int duration   = 0                      , int    rating = 0 )
+          int duration   = 0                      , double rating = 0 )
     {
         this->title          = title;
         this->year           = year;
@@ -94,10 +94,7 @@ public :
 
     // << overload to print string format of enum value
 
-    static Certificate stringToEnum(string str);
 };
-
-
 
 ostream& operator<<(ostream& str, const Movie& movie);
 
