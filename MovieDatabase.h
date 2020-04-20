@@ -19,7 +19,6 @@ using namespace std;
 
 //TODO use lambda ?
 
-//template <typename T>
 class MovieDatabase
 {
 private:
@@ -28,15 +27,17 @@ private:
 
 public:
 
-    explicit MovieDatabase(const Movie mov = Movie())
-    {
-        movieList.push_back(mov);
-        cout << "Another movie added!" << endl;
-    }
+    explicit MovieDatabase()
+    = default;
 
     inline vector<Movie> getMovieList() const
     {
         return movieList;
+    }
+
+    inline void addMovieToDatabase(Movie mov)
+    {
+        movieList.push_back(mov);
     }
 };
 

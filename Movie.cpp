@@ -48,7 +48,10 @@ istream& operator>>(istream& is, Movie& movie)
     {
         if(c == ',')
         {
-            stringstream ss(cert);
+            stringstream ss;
+
+            ss << quoted(cert);
+
             ss >> ce;
 
             movie = Movie(title, year, ce, genre, dur, rate);
@@ -75,12 +78,12 @@ istream& operator>>(istream& is, Certificate& cert)
 {
     string input;
 
-    is >> input;
+    is >> quoted(input);
 
     string certs[12] = { "NOT RATED", "UNRATED", "G", "PG", "PG-13", "R",
-                         "APPROVED", "PASSED, N/A", "TV-14", "M", "X"};
+                         "APPROVED", "PASSED", "N/A", "TV-14", "M", "X"};
 
-    for(int i = 0; i <= 12; i++)
+    for(int i = 0; i < 12; i++)
     {
         if ((strcmp(certs[i].c_str(), input.c_str())) == 0)
         {
@@ -93,9 +96,9 @@ istream& operator>>(istream& is, Certificate& cert)
 ostream& operator<<(ostream& os, const Certificate& cl)
 {
     string certs[12] = { "NOT RATED", "UNRATED", "G", "PG", "PG-13", "R",
-                         "APPROVED", "PASSED, N/A", "TV-14", "M", "X"};
+                         "APPROVED", "PASSED", "N/A", "TV-14", "M", "X"};
 
-    for (int i = 0; i <= 12; i++)
+    for (int i = 0; i < 12; i++)
     {
         if(cl == (Certificate)i)
         {

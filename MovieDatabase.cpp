@@ -17,14 +17,13 @@ using namespace std;
 
 //TODO use lambda ?
 
-//template <typename T>
 istream& operator>>(istream& is, MovieDatabase& mdb)
 {
     Movie mov;
 
     if(is >> mov)
     {
-        mdb = MovieDatabase(mov);
+        mdb.addMovieToDatabase(mov);
     }
     else
     {
