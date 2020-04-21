@@ -12,7 +12,9 @@
 #include <iostream>
 #include <iomanip>
 #include <sstream>
+#include <map>
 #include "Movie.h"
+#include "MovieDatabase.hh"
 
 using namespace std;
 
@@ -74,37 +76,25 @@ ostream& operator<<(ostream& os, const Movie& movie)
                       << movie.getRating();
 }
 
-istream& operator>>(istream& is, Certificate& cert)
+istream &operator>>(istream& is, Certificate& certificate)
 {
-    string input;
-
-    is >> quoted(input);
-
-    string certs[12] = { "NOT RATED", "UNRATED", "G", "PG", "PG-13", "R",
-                         "APPROVED", "PASSED", "N/A", "TV-14", "M", "X"};
-
-    for(int i = 0; i < 12; i++)
+    string value;
+    getline(is, value);
+    if (certificateInputMap.contains(value))
     {
-        if ((strcmp(certs[i].c_str(), input.c_str())) == 0)
-        {
-            cert = ((Certificate)i);
-        }
+        certificate = certificateInputMap.at(value);
+    }
+    else
+    {
+        cerr << "Invalid certificate: " << value << endl;
+        is.clear();
     }
     return is;
 }
 
-ostream& operator<<(ostream& os, const Certificate& cl)
+ostream &operator<<(ostream& os, Certificate certificate)
 {
-    string certs[12] = { "NOT RATED", "UNRATED", "G", "PG", "PG-13", "R",
-                         "APPROVED", "PASSED", "N/A", "TV-14", "M", "X"};
-
-    for (int i = 0; i < 12; i++)
-    {
-        if(cl == (Certificate)i)
-        {
-            return os << certs[i];
-        }
-    }
+    return os << certificateOutputMap.at(certificate);
 }
 
 

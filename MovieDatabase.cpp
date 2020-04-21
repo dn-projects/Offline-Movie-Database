@@ -11,12 +11,12 @@
 #include <string>
 #include <iostream>
 #include "MovieDatabase.h"
+#include "MovieDatabase.hh"
 #include "Movie.h"
 
 using namespace std;
 
-//TODO use lambda ?
-
+//TODO use lambda
 istream& operator>>(istream& is, MovieDatabase& mdb)
 {
     Movie mov;
