@@ -7,8 +7,8 @@
 
  Date        :
 *******************************************************************************/
-#ifndef CPP_COURSEWORK_MOVIEDATABASE_HH
-#define CPP_COURSEWORK_MOVIEDATABASE_HH
+#ifndef CPP_COURSEWORK_MOVIE_HH
+#define CPP_COURSEWORK_MOVIE_HH
 
 #include <iostream>
 #include <fstream>
@@ -51,4 +51,4 @@ static const map<Certificate, string> certificateOutputMap =
     {Certificate::N_A,       "N/A"}
 };
 
-#endif //CPP_COURSEWORK_MOVIEDATABASE_HH
+#endif //CPP_COURSEWORK_MOVIE_HH

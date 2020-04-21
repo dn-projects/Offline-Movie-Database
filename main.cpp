@@ -22,7 +22,7 @@ int main()
     Movie m1;
 
     string line;
-    ifstream ifs("/Users/David/Offline-Movie-Database/films.txt");
+    ifstream ifs("/Users/david/Desktop/testy/Offline-Movie-Database/films.txt");
     if (ifs.is_open())
     {
         while (getline(ifs, line))

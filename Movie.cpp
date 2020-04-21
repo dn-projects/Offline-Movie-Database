@@ -14,7 +14,7 @@
 #include <sstream>
 #include <map>
 #include "Movie.h"
-#include "MovieDatabase.hh"
+#include "Movie.hh"
 
 using namespace std;
 
@@ -52,7 +52,7 @@ istream& operator>>(istream& is, Movie& movie)
         {
             stringstream ss;
 
-            ss << quoted(cert);
+            ss << cert;
 
             ss >> ce;
 
@@ -78,15 +78,15 @@ ostream& operator<<(ostream& os, const Movie& movie)
 
 istream &operator>>(istream& is, Certificate& certificate)
 {
-    string value;
-    getline(is, value);
-    if (certificateInputMap.contains(value))
+    string input;
+    getline(is, input);
+    if (certificateInputMap.count(input) == 1)
     {
-        certificate = certificateInputMap.at(value);
+        certificate = certificateInputMap.at(input);
     }
     else
     {
-        cerr << "Invalid certificate: " << value << endl;
+        cerr << "Not a certificate!" << input << endl;
         is.clear();
     }
     return is;

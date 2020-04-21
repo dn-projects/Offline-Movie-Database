@@ -11,7 +11,7 @@
 #include <string>
 #include <iostream>
 #include "MovieDatabase.h"
-#include "MovieDatabase.hh"
+#include "Movie.hh"
 #include "Movie.h"
 
 using namespace std;

@@ -98,10 +98,14 @@ public :
 
 ostream& operator<<(ostream& str, const Movie& movie);
 
-ostream& operator<<(ostream& os, const Certificate& cl);
+ostream &operator<<(ostream& os, Certificate certificate);
 
 istream& operator>>(istream& is, Movie& movie);
 
-istream& operator>>(istream& is, Certificate& cert);
+istream &operator>>(istream& is, Certificate& certificate);
+
+
+
+
 
 #endif //CPP_COURSEWORK_MOVIE_H

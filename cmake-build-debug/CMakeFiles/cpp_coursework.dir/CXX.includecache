@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/Users/David/Offline-Movie-Database/Movie.cpp
+/Users/david/Desktop/testy/Offline-Movie-Database/Movie.cpp
 string
 -
 iostream
@@ -18,39 +18,17 @@ sstream
 map
 -
 Movie.h
-/Users/David/Offline-Movie-Database/Movie.h
-MovieDatabase.hh
-/Users/David/Offline-Movie-Database/MovieDatabase.hh
+/Users/david/Desktop/testy/Offline-Movie-Database/Movie.h
+Movie.hh
+/Users/david/Desktop/testy/Offline-Movie-Database/Movie.hh
 
-/Users/David/Offline-Movie-Database/Movie.h
+/Users/david/Desktop/testy/Offline-Movie-Database/Movie.h
 string
 -
 iostream
 -
 
-/Users/David/Offline-Movie-Database/MovieDatabase.cpp
-string
--
-iostream
--
-MovieDatabase.h
-/Users/David/Offline-Movie-Database/MovieDatabase.h
-MovieDatabase.hh
-/Users/David/Offline-Movie-Database/MovieDatabase.hh
-Movie.h
-/Users/David/Offline-Movie-Database/Movie.h
-
-/Users/David/Offline-Movie-Database/MovieDatabase.h
-iostream
--
-fstream
--
-vector
--
-Movie.h
-/Users/David/Offline-Movie-Database/Movie.h
-
-/Users/David/Offline-Movie-Database/MovieDatabase.hh
+/Users/david/Desktop/testy/Offline-Movie-Database/Movie.hh
 iostream
 -
 fstream
@@ -62,17 +40,5 @@ iomanip
 map
 -
 Movie.h
-/Users/David/Offline-Movie-Database/Movie.h
-
-/Users/David/Offline-Movie-Database/main.cpp
-string
--
-iostream
--
-sstream
--
-Movie.h
-/Users/David/Offline-Movie-Database/Movie.h
-MovieDatabase.h
-/Users/David/Offline-Movie-Database/MovieDatabase.h
+/Users/david/Desktop/testy/Offline-Movie-Database/Movie.h
 
