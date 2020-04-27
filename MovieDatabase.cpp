@@ -15,11 +15,22 @@
 
 using namespace std;
 
-//TODO use lambda
-
 //inline Movie& MovieDatabase::operator[](int i)
 
-
+//template<typename T>
+//MovieDatabase filter(T selector)
+//{
+//    MovieDatabase vector;
+//
+//    for (const Movie& v : )
+//    {
+//        if(selector(v))
+//        {
+//            vector.addMovieToDatabase(v);
+//        }
+//    }
+//    return vector;
+//}
 
 istream& operator>>(istream& is, MovieDatabase& mdb)
 {

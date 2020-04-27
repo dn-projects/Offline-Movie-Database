@@ -12,16 +12,6 @@ string
 iostream
 -
 
-/Users/David/Offline-Movie-Database/MovieDatabase.cpp
-string
--
-iostream
--
-MovieDatabase.h
-/Users/David/Offline-Movie-Database/MovieDatabase.h
-Movie.h
-/Users/David/Offline-Movie-Database/Movie.h
-
 /Users/David/Offline-Movie-Database/MovieDatabase.h
 iostream
 -

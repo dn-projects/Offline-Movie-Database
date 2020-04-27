@@ -93,6 +93,8 @@ public :
 
 };
 
+//TODO in what order should default list be sorted in
+
 inline bool operator<(const Movie &movie1, const Movie &movie2)
 {
     return movie1.getTitle().length() < movie2.getTitle().length();

@@ -17,7 +17,22 @@
 
 using namespace std;
 
-//TODO use lambda ?
+struct movieFilter
+{
+    string title;
+    int year;
+    string genre;
+    int duration;
+    double rating;
+    Certificate c;
+
+    movieFilter(string t = "")
+    {
+        title = t;
+    }
+
+    //TODO have a number system to choose what to filter on
+};
 
 class MovieDatabase
 {
@@ -56,21 +71,65 @@ public:
         std::sort(movieList.begin(), movieList.end(), compare);
     }
 
-    template<typename T>
-    MovieDatabase filter(T selector)
+    //TODO get type?
+    template <typename I, typename M>
+    Movie queryDatabase(I index = '*', int category = 0, M match = "")
     {
-        MovieDatabase vector;
+        vector<Movie> movieDatabase;
 
-        for (const Movie& v : movieList)
+        for (const Movie& movie : movieList)
         {
-            if(selector(v))
+            if (category == 0) // title
             {
-                vector.addMovieToDatabase(v);
+
+            }
+            else if (category == 1) // year
+            {
+
+            }
+            else if (category == 2) // certificate
+            {
+
+            }
+            else if (category == 3) // genre
+            {
+                if (movie.getGenre().find(match) != string::npos)
+                {
+                    if (index == '*')
+                    {
+                        cout << movie << endl;
+                    }
+                    movieDatabase.push_back(movie);
+                }
+            }
+            else if (category == 4) // duration
+            {
+
+            }
+            else if (category == 5) // rating
+            {
+
             }
         }
-        return vector;
+        if (index != '*') {
+            return movieDatabase[index];
+        }
     }
 
+//    template<typename T>
+//    MovieDatabase filter(T selector)
+//    {
+//        MovieDatabase vector;
+//
+//        for (const Movie& v : movieList)
+//        {
+//            if(selector(v))
+//            {
+//                vector.addMovieToDatabase(v);
+//            }
+//        }
+//        return vector;
+//    }
 };
 
 istream& operator>>(istream& is, MovieDatabase& mdb);

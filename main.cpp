@@ -16,6 +16,8 @@
 
 using namespace std;
 
+//TODO make test harness function for each class
+
 int main()
 {
     MovieDatabase movieDatabase;
@@ -50,9 +52,14 @@ int main()
 
     cout << movieDatabase << endl << endl;
 
-    movieDatabase.filter([](Movie &movie) -> bool {
-        return movie.getGenre() == "Film-Noir";
-    });
+    //movieDatabase.filter([](Movie &movie) -> bool
+    //{
+    //    return movie.getGenre() == "Film-Noir"; //TODO is '==' correct
+    //});
+
+    //movieDatabase.queryDatabase('*', 0, "");
+    cout << "The movie is: " << endl << endl;
+    cout << movieDatabase.queryDatabase(2, 3, "Film-Noir");
 
     return 0;
 }
