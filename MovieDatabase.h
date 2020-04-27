@@ -39,6 +39,38 @@ public:
     {
         movieList.push_back(mov);
     }
+
+    inline Movie& operator[](const int& index)
+    {
+        return movieList[index];
+    }
+
+    inline void sort()
+    {
+        std::sort(movieList.begin(), movieList.end());
+    }
+
+    template<typename T>
+    inline void sort(T compare)
+    {
+        std::sort(movieList.begin(), movieList.end(), compare);
+    }
+
+    template<typename T>
+    MovieDatabase filter(T selector)
+    {
+        MovieDatabase vector;
+
+        for (const Movie& v : movieList)
+        {
+            if(selector(v))
+            {
+                vector.addMovieToDatabase(v);
+            }
+        }
+        return vector;
+    }
+
 };
 
 istream& operator>>(istream& is, MovieDatabase& mdb);

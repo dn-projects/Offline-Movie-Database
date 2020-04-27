@@ -11,12 +11,16 @@
 #include <string>
 #include <iostream>
 #include "MovieDatabase.h"
-#include "Movie.hh"
 #include "Movie.h"
 
 using namespace std;
 
 //TODO use lambda
+
+//inline Movie& MovieDatabase::operator[](int i)
+
+
+
 istream& operator>>(istream& is, MovieDatabase& mdb)
 {
     Movie mov;

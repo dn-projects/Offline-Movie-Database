@@ -1,4 +1,4 @@
-# Install script for directory: /Users/david/Desktop/testy/Offline-Movie-Database
+# Install script for directory: /Users/David/Offline-Movie-Database
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -40,5 +40,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/Users/david/Desktop/testy/Offline-Movie-Database/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/Users/David/Offline-Movie-Database/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

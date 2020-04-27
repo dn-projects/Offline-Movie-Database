@@ -16,96 +16,109 @@
 
 using namespace std;
 
-enum class Certificate
-{
-    NOT_RATED ,UNRATED ,G ,PG ,PG_13 ,R, APPROVED, PASSED, N_A, TV_14, M, X
+enum class Certificate {
+    NOT_RATED, UNRATED, G, PG, PG_13, R, APPROVED, PASSED, N_A, TV_14, M, X
 };
 
-class Movie
-{
+class Movie {
 private :
 
     string title;
-    int    year;
+    int year;
     string genre;
     //set<Genre> genreSet;
     //bitfields for genre
-    int    duration;
+    int duration;
     double rating;
     Certificate c;
 
 public :
 
-    Movie(string title   = " *** EMPTY MOVIE *** " , int    year   = 0 ,
-          Certificate cl = Certificate::NOT_RATED  , string genre  = "",
-          int duration   = 0                       , double rating = 0 )
+    Movie(string title = " *** EMPTY MOVIE *** ", int year = 0,
+          Certificate cl = Certificate::NOT_RATED, string genre = "",
+          int duration = 0, double rating = 0)
     {
-        this->title    = title;
-        this->year     = year;
-        this->c        = cl;
-        this->genre    = genre;
+        this->title = title;
+        this->year = year;
+        this->c = cl;
+        this->genre = genre;
         this->duration = duration;
-        this->rating   = rating;
+        this->rating = rating;
     }
 
-    inline string getTitle() const
+    Movie(const Movie &movie2)
     {
+        title    = movie2.title;
+        year     = movie2.year;
+        c        = movie2.c;
+        genre    = movie2.genre;
+        duration = movie2.duration;
+        rating   = movie2.rating;
+    }
+
+    inline string getTitle() const {
         return title;
     }
 
-    inline int getYear() const
-    {
+    inline int getYear() const {
         return year;
     }
 
-    inline Certificate getCertificate() const
-    {
+    inline Certificate getCertificate() const {
         return c;
     }
 
-    inline string getGenre() const
-    {
+    inline string getGenre() const {
         return genre;
     }
 
-    inline int getDuration() const
-    {
+    inline int getDuration() const {
         return duration;
     }
 
-    inline int getRating() const
-    {
+    inline int getRating() const {
         return rating;
     }
+
+    friend inline bool operator<(const Movie &movie1, const Movie &movie2);
+
+    friend inline bool operator>(const Movie &movie1, const Movie &movie2);
+
+    friend inline bool operator==(const Movie &movie1, const Movie &movie2);
+
+    friend inline bool operator!=(const Movie &movie1, const Movie &movie2);
 
     ~Movie()
     = default;
 
-    friend bool operator==(const Movie& movie1, const Movie& movie2);
-
-    friend bool operator!=(const Movie& movie1, const Movie& movie2);
-
-    friend inline bool operator>(const Movie& movie1, const Movie& movie2);
-
-    friend inline bool operator<(const Movie& movie1, const Movie& movie2);
-
-    // overload printing out a movie (toString)
-
-
-    // << overload to print string format of enum value
-
 };
 
-ostream& operator<<(ostream& str, const Movie& movie);
+inline bool operator<(const Movie &movie1, const Movie &movie2)
+{
+    return movie1.getTitle().length() < movie2.getTitle().length();
+}
 
-ostream &operator<<(ostream& os, Certificate certificate);
+bool operator>(const Movie& movie1, const Movie& movie2)
+{
+    return movie1.getTitle() > movie2.getTitle();
+}
 
-istream& operator>>(istream& is, Movie& movie);
+bool inline operator==(const Movie& movie1, const Movie& movie2)
+{
+    return (movie1.getTitle() == movie2.getTitle());
+}
 
-istream &operator>>(istream& is, Certificate& certificate);
+bool inline operator!=(const Movie& movie1, const Movie& movie2)
+{
+    return !(movie1 == movie2);
+}
 
+ostream &operator<<(ostream &str, const Movie &movie);
 
+ostream &operator<<(ostream &os, Certificate certificate);
 
+istream &operator>>(istream &is, Movie &movie);
 
+istream &operator>>(istream &is, Certificate &certificate);
 
 #endif //CPP_COURSEWORK_MOVIE_H

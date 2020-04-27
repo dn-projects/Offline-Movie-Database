@@ -18,18 +18,17 @@ using namespace std;
 
 int main()
 {
-    MovieDatabase mdb;
-    Movie m1;
+    MovieDatabase movieDatabase;
 
     string line;
-    ifstream ifs("/Users/david/Desktop/testy/Offline-Movie-Database/films.txt");
+    ifstream ifs("/Users/David/Offline-Movie-Database/films.txt");
     if (ifs.is_open())
     {
         while (getline(ifs, line))
         {
             stringstream ss;
             ss << line;
-            ss >> mdb;
+            ss >> movieDatabase;
         }
         ifs.close();
     }
@@ -38,9 +37,22 @@ int main()
         cout << "Unable to open file!";
     }
 
-    cout << mdb;
+    cout << movieDatabase << endl << endl;
+
+    movieDatabase.sort();
+
+    cout << movieDatabase << endl << endl;
+
+    movieDatabase.sort([](Movie& movie1, Movie& movie2) -> bool
+    {
+        return movie1.getYear() < movie2.getYear();
+    });
+
+    cout << movieDatabase << endl << endl;
+
+    movieDatabase.filter([](Movie &movie) -> bool {
+        return movie.getGenre() == "Film-Noir";
+    });
 
     return 0;
 }
-
-

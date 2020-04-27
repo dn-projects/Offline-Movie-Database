@@ -1,3 +1,3 @@
-/Users/david/Desktop/testy/Offline-Movie-Database/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/Users/david/Desktop/testy/Offline-Movie-Database/cmake-build-debug/CMakeFiles/edit_cache.dir
-/Users/david/Desktop/testy/Offline-Movie-Database/cmake-build-debug/CMakeFiles/cpp_coursework.dir
+/Users/David/Offline-Movie-Database/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/David/Offline-Movie-Database/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/David/Offline-Movie-Database/cmake-build-debug/CMakeFiles/cpp_coursework.dir

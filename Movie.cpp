@@ -18,25 +18,9 @@
 
 using namespace std;
 
-inline bool operator>(const Movie& movie1, const Movie& movie2)
-{
-    return movie1.getTitle() > movie2.getTitle();
-}
 
-inline bool operator<(const Movie& movie1, const Movie& movie2)
-{
-    return movie1.getTitle() < movie2.getTitle();
-}
 
-bool operator==(const Movie& movie1, const Movie& movie2)
-{
-    return (movie1.getTitle() == movie2.getTitle());
-}
 
-bool operator!=(const Movie& movie1, const Movie& movie2)
-{
-    return !(movie1 == movie2);
-}
 
 istream& operator>>(istream& is, Movie& movie)
 {
@@ -96,5 +80,3 @@ ostream &operator<<(ostream& os, Certificate certificate)
 {
     return os << certificateOutputMap.at(certificate);
 }
-
-
