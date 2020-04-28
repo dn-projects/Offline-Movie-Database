@@ -3,13 +3,15 @@
 
 CMakeFiles/cpp_coursework.dir/Movie.cpp.o
  /Users/David/Offline-Movie-Database/Movie.cpp
- /Users/David/Offline-Movie-Database/Movie.h
+ /Users/David/Offline-Movie-Database/Movie.h++
  /Users/David/Offline-Movie-Database/Movie.hh
 CMakeFiles/cpp_coursework.dir/MovieDatabase.cpp.o
- /Users/David/Offline-Movie-Database/Movie.h
+ /Users/David/Offline-Movie-Database/Movie.h++
  /Users/David/Offline-Movie-Database/MovieDatabase.cpp
- /Users/David/Offline-Movie-Database/MovieDatabase.h
+ /Users/David/Offline-Movie-Database/MovieDatabase.h++
+ /Users/David/Offline-Movie-Database/MovieDatabase.hh
 CMakeFiles/cpp_coursework.dir/main.cpp.o
- /Users/David/Offline-Movie-Database/Movie.h
- /Users/David/Offline-Movie-Database/MovieDatabase.h
+ /Users/David/Offline-Movie-Database/Movie.h++
+ /Users/David/Offline-Movie-Database/MovieDatabase.h++
+ /Users/David/Offline-Movie-Database/MovieDatabase.hh
  /Users/David/Offline-Movie-Database/main.cpp

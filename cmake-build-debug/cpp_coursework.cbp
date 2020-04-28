@@ -85,7 +85,7 @@
 		<Unit filename="/Users/David/Offline-Movie-Database/Movie.cpp">
 			<Option target="cpp_coursework"/>
 		</Unit>
-		<Unit filename="/Users/David/Offline-Movie-Database/Movie.h">
+		<Unit filename="/Users/David/Offline-Movie-Database/Movie.h++">
 			<Option target="cpp_coursework"/>
 		</Unit>
 		<Unit filename="/Users/David/Offline-Movie-Database/Movie.hh">
@@ -94,7 +94,10 @@
 		<Unit filename="/Users/David/Offline-Movie-Database/MovieDatabase.cpp">
 			<Option target="cpp_coursework"/>
 		</Unit>
-		<Unit filename="/Users/David/Offline-Movie-Database/MovieDatabase.h">
+		<Unit filename="/Users/David/Offline-Movie-Database/MovieDatabase.h++">
+			<Option target="cpp_coursework"/>
+		</Unit>
+		<Unit filename="/Users/David/Offline-Movie-Database/MovieDatabase.hh">
 			<Option target="cpp_coursework"/>
 		</Unit>
 		<Unit filename="/Users/David/Offline-Movie-Database/main.cpp">

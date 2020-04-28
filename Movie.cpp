@@ -13,14 +13,10 @@
 #include <iomanip>
 #include <sstream>
 #include <map>
-#include "Movie.h"
+#include "Movie.h++"
 #include "Movie.hh"
 
 using namespace std;
-
-
-
-
 
 istream& operator>>(istream& is, Movie& movie)
 {

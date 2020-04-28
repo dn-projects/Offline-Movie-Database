@@ -97,7 +97,7 @@ public :
 
 inline bool operator<(const Movie &movie1, const Movie &movie2)
 {
-    return movie1.getTitle().length() < movie2.getTitle().length();
+    return movie1.getYear() < movie2.getYear();
 }
 
 bool operator>(const Movie& movie1, const Movie& movie2)

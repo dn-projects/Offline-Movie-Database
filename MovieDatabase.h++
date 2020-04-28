@@ -12,8 +12,10 @@
 
 #include <iostream>
 #include <fstream>
+#include <iterator>
 #include <vector>
-#include "Movie.h"
+#include "Movie.h++"
+#include "MovieDatabase.hh"
 
 using namespace std;
 
@@ -71,50 +73,18 @@ public:
         std::sort(movieList.begin(), movieList.end(), compare);
     }
 
-    //TODO get type?
-    template <typename I, typename M>
-    Movie queryDatabase(I index = '*', int category = 0, M match = "")
+    template<typename I>
+    Movie returnMovieIndex(I index)
     {
-        vector<Movie> movieDatabase;
-
-        for (const Movie& movie : movieList)
-        {
-            if (category == 0) // title
-            {
-
-            }
-            else if (category == 1) // year
-            {
-
-            }
-            else if (category == 2) // certificate
-            {
-
-            }
-            else if (category == 3) // genre
-            {
-                if (movie.getGenre().find(match) != string::npos)
-                {
-                    if (index == '*')
-                    {
-                        cout << movie << endl;
-                    }
-                    movieDatabase.push_back(movie);
-                }
-            }
-            else if (category == 4) // duration
-            {
-
-            }
-            else if (category == 5) // rating
-            {
-
-            }
-        }
-        if (index != '*') {
-            return movieDatabase[index];
-        }
+        return DatabaseRetriever::returnMovieByIndex(movieList, index);
     }
+
+    template<typename C>
+    void printMovieCount(C count)
+    {
+        return DatabaseRetriever::printMovieByCount(movieList, count);
+    }
+
 
 //    template<typename T>
 //    MovieDatabase filter(T selector)
@@ -130,6 +100,8 @@ public:
 //        }
 //        return vector;
 //    }
+
+    //TODO testing function here
 };
 
 istream& operator>>(istream& is, MovieDatabase& mdb);

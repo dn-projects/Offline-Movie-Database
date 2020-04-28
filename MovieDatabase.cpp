@@ -10,8 +10,8 @@
 
 #include <string>
 #include <iostream>
-#include "MovieDatabase.h"
-#include "Movie.h"
+#include "MovieDatabase.h++"
+#include "Movie.h++"
 
 using namespace std;
 

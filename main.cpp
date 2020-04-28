@@ -11,8 +11,8 @@
 #include <string>
 #include <iostream>
 #include <sstream>
-#include "Movie.h"
-#include "MovieDatabase.h"
+#include "Movie.h++"
+#include "MovieDatabase.h++"
 
 using namespace std;
 
@@ -45,21 +45,28 @@ int main()
 
     cout << movieDatabase << endl << endl;
 
-    movieDatabase.sort([](Movie& movie1, Movie& movie2) -> bool
-    {
-        return movie1.getYear() < movie2.getYear();
-    });
+    //movieDatabase.sort([](Movie& movie1, Movie& movie2) -> bool
+    //{
+    //    return movie1.getYear() < movie2.getYear();
+    //});
 
-    cout << movieDatabase << endl << endl;
+    //cout << movieDatabase << endl << endl;
 
     //movieDatabase.filter([](Movie &movie) -> bool
     //{
     //    return movie.getGenre() == "Film-Noir"; //TODO is '==' correct
     //});
 
+//    cout << "printing movie by index: \n";
+//    Movie movie1 = movieDatabase.returnMovieIndex(0);
+//    cout << movie1 << endl;
+//
+//    cout << "printing movie by count: \n";
+//    movieDatabase.printMovieCount(0);
+
     //movieDatabase.queryDatabase('*', 0, "");
-    cout << "The movie is: " << endl << endl;
-    cout << movieDatabase.queryDatabase(2, 3, "Film-Noir");
+    //cout << "The movie is: " << endl << endl;
+    //cout << movieDatabase.queryDatabase(2, 3, "Film-Noir");
 
     return 0;
 }
