@@ -1,11 +1,15 @@
 /*******************************************************************************
  File        : Movie.h
 
- Description :
+ Description : A class that stores the information about a film (Title, Year,
+               Certificate, Genre, Duration and Rating) The class acts as a
+               template to allow an object to be generated for a film.
+               This object can then be used in the MovieDatabase class to add
+               an entry (a film object) to the database.
 
  Author      : Dovydas Novikovas
 
- Date        :
+ Date        : Wednesday 6th May 2020
 *******************************************************************************/
 
 #ifndef CPP_COURSEWORK_MOVIE_H
@@ -16,7 +20,8 @@
 
 using namespace std;
 
-enum class Certificate {
+enum class Certificate
+{
     NOT_RATED, UNRATED, G, PG, PG_13, R, APPROVED, PASSED, N_A, TV_14, M, X
 };
 

@@ -5,7 +5,7 @@
 
  Author      : Dovydas Novikovas
 
- Date        :
+ Date        : Wednesday 6th May 2020
 *******************************************************************************/
 #ifndef CPP_COURSEWORK_MOVIEDATABASE_H
 #define CPP_COURSEWORK_MOVIEDATABASE_H

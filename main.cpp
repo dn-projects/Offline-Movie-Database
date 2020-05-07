@@ -1,17 +1,19 @@
 /*******************************************************************************
  File        : main.cpp
 
- Description :
+ Description : The class contains a main method which will be used for running
+               and testing the classes @Movie.cpp and @MovieDatabase.cpp.
+               The class reads data from a file and populates a MovieDatabase
+               object(vector of Movie objects) with a series of 'Films'.
 
  Author      : Dovydas Novikovas
 
- Date        :
+ Date        : Wednesday 6th May 2020
 *******************************************************************************/
 
 #include <string>
 #include <iostream>
 #include <sstream>
-#include "Movie.h++"
 #include "MovieDatabase.h++"
 
 using namespace std;

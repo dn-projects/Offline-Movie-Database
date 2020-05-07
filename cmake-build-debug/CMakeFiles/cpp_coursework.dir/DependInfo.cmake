@@ -4,9 +4,9 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/Users/David/Offline-Movie-Database/Movie.cpp" "/Users/David/Offline-Movie-Database/cmake-build-debug/CMakeFiles/cpp_coursework.dir/Movie.cpp.o"
-  "/Users/David/Offline-Movie-Database/MovieDatabase.cpp" "/Users/David/Offline-Movie-Database/cmake-build-debug/CMakeFiles/cpp_coursework.dir/MovieDatabase.cpp.o"
-  "/Users/David/Offline-Movie-Database/main.cpp" "/Users/David/Offline-Movie-Database/cmake-build-debug/CMakeFiles/cpp_coursework.dir/main.cpp.o"
+  "/Users/david/Desktop/testy/Offline-Movie-Database/Movie.cpp" "/Users/david/Desktop/testy/Offline-Movie-Database/cmake-build-debug/CMakeFiles/cpp_coursework.dir/Movie.cpp.o"
+  "/Users/david/Desktop/testy/Offline-Movie-Database/MovieDatabase.cpp" "/Users/david/Desktop/testy/Offline-Movie-Database/cmake-build-debug/CMakeFiles/cpp_coursework.dir/MovieDatabase.cpp.o"
+  "/Users/david/Desktop/testy/Offline-Movie-Database/main.cpp" "/Users/david/Desktop/testy/Offline-Movie-Database/cmake-build-debug/CMakeFiles/cpp_coursework.dir/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "AppleClang")
 

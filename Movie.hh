@@ -1,18 +1,16 @@
 /*******************************************************************************
  File        : MovieDatabase.hh
 
- Description :
+ Description : A header file used to store two maps that allow conversions
+               between strings and Certificates
 
  Author      : Dovydas Novikovas
 
- Date        :
+ Date        : Wednesday 6th May 2020
 *******************************************************************************/
 #ifndef CPP_COURSEWORK_MOVIE_HH
 #define CPP_COURSEWORK_MOVIE_HH
 
-#include <iostream>
-#include <fstream>
-#include <vector>
 #include <iomanip>
 #include <map>
 #include "Movie.h++"

@@ -8,102 +8,100 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/Users/David/Offline-Movie-Database/cmake-build-debug"/>
+				<Option working_dir="/Users/david/Desktop/testy/Offline-Movie-Database/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Users/David/Offline-Movie-Database/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/David/Offline-Movie-Database/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/Users/David/Offline-Movie-Database/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/David/Offline-Movie-Database/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/david/Desktop/testy/Offline-Movie-Database/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/david/Desktop/testy/Offline-Movie-Database/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/david/Desktop/testy/Offline-Movie-Database/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/david/Desktop/testy/Offline-Movie-Database/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/Users/David/Offline-Movie-Database/cmake-build-debug"/>
+				<Option working_dir="/Users/david/Desktop/testy/Offline-Movie-Database/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Users/David/Offline-Movie-Database/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/David/Offline-Movie-Database/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/Users/David/Offline-Movie-Database/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/David/Offline-Movie-Database/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/david/Desktop/testy/Offline-Movie-Database/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/david/Desktop/testy/Offline-Movie-Database/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/david/Desktop/testy/Offline-Movie-Database/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/david/Desktop/testy/Offline-Movie-Database/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="/Users/David/Offline-Movie-Database/cmake-build-debug"/>
+				<Option working_dir="/Users/david/Desktop/testy/Offline-Movie-Database/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Users/David/Offline-Movie-Database/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/David/Offline-Movie-Database/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/Users/David/Offline-Movie-Database/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/David/Offline-Movie-Database/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/david/Desktop/testy/Offline-Movie-Database/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/david/Desktop/testy/Offline-Movie-Database/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/david/Desktop/testy/Offline-Movie-Database/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/david/Desktop/testy/Offline-Movie-Database/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="cpp_coursework">
-				<Option output="/Users/David/Offline-Movie-Database/cmake-build-debug/cpp_coursework" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/David/Offline-Movie-Database/cmake-build-debug"/>
+				<Option output="/Users/david/Desktop/testy/Offline-Movie-Database/cmake-build-debug/cpp_coursework" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/david/Desktop/testy/Offline-Movie-Database/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
 					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"/>
 					<Add directory="/usr/local/include"/>
-					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../lib/clang/8.0.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/11.0.0/include"/>
 					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
-					<Add directory="/usr/include"/>
 					<Add directory="/System/Library/Frameworks"/>
 					<Add directory="/Library/Frameworks"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Users/David/Offline-Movie-Database/cmake-build-debug/Makefile&quot;  VERBOSE=1 cpp_coursework"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/David/Offline-Movie-Database/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/Users/David/Offline-Movie-Database/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/David/Offline-Movie-Database/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/david/Desktop/testy/Offline-Movie-Database/cmake-build-debug/Makefile&quot;  VERBOSE=1 cpp_coursework"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/david/Desktop/testy/Offline-Movie-Database/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/david/Desktop/testy/Offline-Movie-Database/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/david/Desktop/testy/Offline-Movie-Database/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="cpp_coursework/fast">
-				<Option output="/Users/David/Offline-Movie-Database/cmake-build-debug/cpp_coursework" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/David/Offline-Movie-Database/cmake-build-debug"/>
+				<Option output="/Users/david/Desktop/testy/Offline-Movie-Database/cmake-build-debug/cpp_coursework" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/david/Desktop/testy/Offline-Movie-Database/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
 					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"/>
 					<Add directory="/usr/local/include"/>
-					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../lib/clang/8.0.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/11.0.0/include"/>
 					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
-					<Add directory="/usr/include"/>
 					<Add directory="/System/Library/Frameworks"/>
 					<Add directory="/Library/Frameworks"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Users/David/Offline-Movie-Database/cmake-build-debug/Makefile&quot;  VERBOSE=1 cpp_coursework/fast"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/David/Offline-Movie-Database/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/Users/David/Offline-Movie-Database/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/David/Offline-Movie-Database/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/david/Desktop/testy/Offline-Movie-Database/cmake-build-debug/Makefile&quot;  VERBOSE=1 cpp_coursework/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/david/Desktop/testy/Offline-Movie-Database/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/david/Desktop/testy/Offline-Movie-Database/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/david/Desktop/testy/Offline-Movie-Database/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/Users/David/Offline-Movie-Database/Movie.cpp">
+		<Unit filename="/Users/david/Desktop/testy/Offline-Movie-Database/Movie.cpp">
 			<Option target="cpp_coursework"/>
 		</Unit>
-		<Unit filename="/Users/David/Offline-Movie-Database/Movie.h++">
+		<Unit filename="/Users/david/Desktop/testy/Offline-Movie-Database/Movie.h++">
 			<Option target="cpp_coursework"/>
 		</Unit>
-		<Unit filename="/Users/David/Offline-Movie-Database/Movie.hh">
+		<Unit filename="/Users/david/Desktop/testy/Offline-Movie-Database/Movie.hh">
 			<Option target="cpp_coursework"/>
 		</Unit>
-		<Unit filename="/Users/David/Offline-Movie-Database/MovieDatabase.cpp">
+		<Unit filename="/Users/david/Desktop/testy/Offline-Movie-Database/MovieDatabase.cpp">
 			<Option target="cpp_coursework"/>
 		</Unit>
-		<Unit filename="/Users/David/Offline-Movie-Database/MovieDatabase.h++">
+		<Unit filename="/Users/david/Desktop/testy/Offline-Movie-Database/MovieDatabase.h++">
 			<Option target="cpp_coursework"/>
 		</Unit>
-		<Unit filename="/Users/David/Offline-Movie-Database/MovieDatabase.hh">
+		<Unit filename="/Users/david/Desktop/testy/Offline-Movie-Database/MovieDatabase.hh">
 			<Option target="cpp_coursework"/>
 		</Unit>
-		<Unit filename="/Users/David/Offline-Movie-Database/main.cpp">
+		<Unit filename="/Users/david/Desktop/testy/Offline-Movie-Database/main.cpp">
 			<Option target="cpp_coursework"/>
 		</Unit>
-		<Unit filename="/Users/David/Offline-Movie-Database/CMakeLists.txt">
+		<Unit filename="/Users/david/Desktop/testy/Offline-Movie-Database/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>
