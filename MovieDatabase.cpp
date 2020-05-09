@@ -10,6 +10,7 @@
 
 #include <string>
 #include <iostream>
+#include <sstream>
 #include "MovieDatabase.h++"
 #include "Movie.h++"
 
@@ -32,21 +33,42 @@ using namespace std;
 //    return vector;
 //}
 
-istream& operator>>(istream& is, MovieDatabase& mdb)
+/**
+ *
+ *
+ * @param is
+ * @param movieDatabase
+ * @return
+ */
+istream& operator>>(istream& is, MovieDatabase& movieDatabase)
 {
-    Movie mov;
+    Movie movie;
+    string movieEntry;
 
-    if(is >> mov)
+    while (getline(is, movieEntry))
     {
-        mdb.addMovieToDatabase(mov);
-    }
-    else
-    {
-        is.clear(ios_base::failbit);
-    }
+        istringstream iss(movieEntry);
 
+        iss >> movie;
+
+        movieDatabase.addMovieToDatabase(movie);
+    }
+    movieDatabase.sort();
     return is;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ostream& operator<<(ostream& os, MovieDatabase& mdb)
 {

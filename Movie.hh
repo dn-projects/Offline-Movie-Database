@@ -1,8 +1,8 @@
 /*******************************************************************************
  File        : MovieDatabase.hh
 
- Description : A header file used to store two maps that allow conversions
-               between strings and Certificates
+ Description : A hidden header file used to store two maps to allow for the
+               conversions between strings and Certificates.
 
  Author      : Dovydas Novikovas
 
@@ -17,6 +17,10 @@
 
 using namespace std;
 
+/**
+ * Map used to store the string to Certificate conversion with strings as keys
+ * and the Certificates as values
+ */
 static const map<string, Certificate> certificateInputMap =
 {
     {"NOT RATED", Certificate::NOT_RATED},
@@ -33,6 +37,10 @@ static const map<string, Certificate> certificateInputMap =
     {"X",         Certificate::X},
 };
 
+/**
+ * Map used to store the Certificate to string conversion with Certificates as
+ * keys and the strings as values
+ */
 static const map<Certificate, string> certificateOutputMap =
 {
     {Certificate::NOT_RATED, "NOT RATED"},

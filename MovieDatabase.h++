@@ -104,7 +104,7 @@ public:
     //TODO testing function here
 };
 
-istream& operator>>(istream& is, MovieDatabase& mdb);
+istream& operator>>(istream& is, MovieDatabase& movieDatabase);
 
 ostream& operator<<(ostream& os, MovieDatabase& mdb);
 

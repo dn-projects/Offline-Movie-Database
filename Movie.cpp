@@ -1,11 +1,7 @@
 /*******************************************************************************
  File        : Movie.cpp
 
- Description : A class that stores the information about a film (Title, Year,
-               Certificate, Genre, Duration and Rating) The class acts as a
-               template to allow an object to be generated for a film.
-               This object can then be used in the MovieDatabase class to add
-               an entry (a film object) to the database.
+ Description : The source file to Movie.h++
 
  Author      : Dovydas Novikovas
 
@@ -14,7 +10,6 @@
 
 #include <iostream>
 #include <iomanip>
-#include <sstream>
 #include <map>
 #include "Movie.h++"
 #include "Movie.hh"
@@ -22,16 +17,12 @@
 using namespace std;
 
 /**
- * Overloading the input operator to convert a string into into a movie object
- *
- * @param is    - an input stream
- * @param movie - movie object to instantiate
- * @return returns the input stream
+ * Function body for overloaded input operator for input stream, Movie
  */
 istream& operator>>(istream& is, Movie& movie)
 {
     char c;
-    Certificate ce;
+    Certificate certificate;
     string title, genre, cert;
     int year, dur, rate;
 
@@ -40,13 +31,11 @@ istream& operator>>(istream& is, Movie& movie)
     {
         if(c == ',')
         {
-            stringstream ss;
+            // uses overloaded operator >>(input stream, Certificate)
+            stringstream ss(cert);
+            ss >> certificate;
 
-            ss << cert;
-
-            ss >> ce;
-
-            movie = Movie(title, year, ce, genre, dur, rate);
+            movie = Movie(title, year, certificate, genre, dur, rate);
         }
         else
         {
@@ -57,11 +46,7 @@ istream& operator>>(istream& is, Movie& movie)
 }
 
 /**
- * Overloading the output operator to format a movie object to be printed
- *
- * @param os    - the formatted output stream
- * @param movie - movie object to print out
- * @return the formatted output stream
+ * Function body for overloaded output operator for output stream, Movie
  */
 ostream& operator<<(ostream& os, const Movie& movie)
 {
@@ -74,12 +59,7 @@ ostream& operator<<(ostream& os, const Movie& movie)
 }
 
 /**
- * Overloading the input operator for a input stream and a Certificate, converts
- * string into Certificate. If no certificate found, error message is printed
- *
- * @param is          - an input stream
- * @param certificate - Certificate to instate with the relevant certificate
- * @return input stream after a converted string into a Certificate
+ * Function body for overloaded input operator for input stream, Certificate
  */
 istream &operator>>(istream& is, Certificate& certificate)
 {
@@ -92,17 +72,13 @@ istream &operator>>(istream& is, Certificate& certificate)
     else
     {
         cerr << "Not a certificate!" << input << endl;
-        is.clear();
+        is.clear(ios_base::failbit);
     }
     return is;
 }
 
 /**
- * Overloading the output operator to print out a certificate to a string
- *
- * @param os          - the output stream operator
- * @param certificate -
- * @return
+ * Function body for overloaded output operator for output stream, Certificate
  */
 ostream &operator<<(ostream& os, Certificate certificate)
 {
