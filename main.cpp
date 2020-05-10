@@ -1,6 +1,8 @@
 /*******************************************************************************
  File        : main.cpp
 
+ Include     : Movie.hpp, MovieDatabase.hpp
+
  Description : The class contains a main method which will be used for running
                and testing the classes @Movie.cpp and @MovieDatabase.cpp.
                The class reads data from a file and populates a MovieDatabase
@@ -13,6 +15,7 @@
 
 #include <string>
 #include <iostream>
+#include <fstream>
 #include "Movie.hpp"
 #include "MovieDatabase.hpp"
 
@@ -25,8 +28,8 @@ int main()
     Movie movie;
     MovieDatabase movieDatabase;
 
+    /*  1. Using "films.txt" to populate movieDatabase with data  */
     ifstream ifs("films.txt", ifstream::in);
-
     if(ifs)
     {
         ifs >> movieDatabase;
@@ -37,12 +40,23 @@ int main()
         cerr << "Error: unable to open input file" << endl;
     }
 
-    cout << movieDatabase << endl << endl;
+    /*  2. Displaying all Movies in chronological order  */
+    cout << "FILMS IN CHRONOLOGICAL ORDER:\n" << movieDatabase << endl;
+
+
+    /*  3. Displaying the third longest 'Film-Noir'  */
 
 
 
-    //cout << movieDatabase << endl << endl;
+    /*  4. Displaying the eight most recent UNRATED film  */
 
+
+    /*  5. Displaying the film with the longest title  */
+
+
+/*******************************************************************************
+              TESTING Movie class and MovieDatabase class
+*******************************************************************************/
     //movieDatabase.sort([](Movie& movie1, Movie& movie2) -> bool
     //{
     //    return movie1.getYear() < movie2.getYear();

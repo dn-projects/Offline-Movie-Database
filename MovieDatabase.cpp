@@ -1,22 +1,23 @@
 /*******************************************************************************
  File        : MovieDatabase.cpp
 
- Description :
+ Include     : MovieDatabase.hpp, Movie.hpp
+
+ Description : Contains the implementations for the overloaded input and output
+               operators for class MovieDatabase.
 
  Author      : Dovydas Novikovas
 
  Date        : Wednesday 6th May 2020
 *******************************************************************************/
 
-#include <string>
+#include <iterator>
 #include <iostream>
 #include <sstream>
 #include "MovieDatabase.hpp"
 #include "Movie.hpp"
 
 using namespace std;
-
-//inline Movie& MovieDatabase::operator[](int i)
 
 //template<typename T>
 //MovieDatabase filter(T selector)
@@ -34,42 +35,35 @@ using namespace std;
 //}
 
 /**
- *
- *
- * @param is
- * @param movieDatabase
- * @return
+ * Function body for overloaded input operator for input stream, MovieDatabase
  */
 istream& operator>>(istream& is, MovieDatabase& movieDatabase)
 {
     Movie movie;
     string movieEntry;
 
+    // reads data found on every new line of input stream
     while (getline(is, movieEntry))
     {
+        // turning film entry string into movie object
         istringstream iss(movieEntry);
-
         iss >> movie;
 
         movieDatabase.addMovieToDatabase(movie);
     }
+    // sorts list of films into chronological order (year released)
     movieDatabase.sort();
     return is;
 }
 
 /**
- *
- *
- * @param os
- * @param movieDatabase
- * @return
+ * Function body for overloaded output operator for output stream, MovieDatabase
  */
 ostream& operator<<(ostream& os, MovieDatabase& movieDatabase)
 {
-    for (auto it  = std::begin(movieDatabase.getMovieList());
-              it != std::end(movieDatabase.getMovieList()); ++it)
+    for (Movie& movie: movieDatabase.getMovieList())
     {
-        os << *it << endl;
+        os << movie << endl;
     }
     return os;
 }

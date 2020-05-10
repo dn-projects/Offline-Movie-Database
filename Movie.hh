@@ -8,12 +8,9 @@
 
  Date        : Wednesday 6th May 2020
 *******************************************************************************/
+
 #ifndef CPP_COURSEWORK_MOVIE_HH
 #define CPP_COURSEWORK_MOVIE_HH
-
-#include <iomanip>
-#include <map>
-#include "Movie.hpp"
 
 using namespace std;
 

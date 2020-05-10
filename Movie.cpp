@@ -1,13 +1,17 @@
 /*******************************************************************************
  File        : Movie.cpp
 
- Description : Movie.h++ source file
+ Include     : Movie.hpp, Movie.hh
+
+ Description : Contains the implementations for the overloaded input and output
+               operators for class Movie.
 
  Author      : Dovydas Novikovas
 
  Date        : Wednesday 6th May 2020
 *******************************************************************************/
 
+#include <sstream>
 #include <iostream>
 #include <iomanip>
 #include <map>

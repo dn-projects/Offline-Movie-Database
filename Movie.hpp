@@ -1,5 +1,5 @@
 /*******************************************************************************
- File        : Movie.h
+ File        : Movie.hpp
 
  Description : A class that stores the information about a film (Title, Year,
                Certificate, Genre, Duration and Rating) The class acts as a
@@ -15,10 +15,6 @@
 
 #ifndef CPP_COURSEWORK_MOVIE_HPP
 #define CPP_COURSEWORK_MOVIE_HPP
-
-#include <string>
-#include <iostream>
-#include <sstream>
 
 using namespace std;
 
