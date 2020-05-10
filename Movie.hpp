@@ -13,8 +13,8 @@
  Date        : Wednesday 6th May 2020
 *******************************************************************************/
 
-#ifndef CPP_COURSEWORK_MOVIE_H
-#define CPP_COURSEWORK_MOVIE_H
+#ifndef CPP_COURSEWORK_MOVIE_HPP
+#define CPP_COURSEWORK_MOVIE_HPP
 
 #include <string>
 #include <iostream>
@@ -145,7 +145,7 @@ inline bool operator<(const Movie &movie1, const Movie &movie2)
  * @return true if the int representation of the year of movie1 is less than
  * the year of movie2; false otherwise
  */
-bool operator>(const Movie& movie1, const Movie& movie2)
+inline bool operator>(const Movie& movie1, const Movie& movie2)
 {
     return movie1.getYear() > movie2.getYear();
 }
@@ -158,7 +158,7 @@ bool operator>(const Movie& movie1, const Movie& movie2)
  * @param movie2 - Movie object to make comparison on
  * @return true if both movie object titles are identical; false otherwise
  */
-bool inline operator==(const Movie& movie1, const Movie& movie2)
+inline bool operator==(const Movie& movie1, const Movie& movie2)
 {
     return (movie1.getTitle() == movie2.getTitle());
 }
@@ -171,7 +171,7 @@ bool inline operator==(const Movie& movie1, const Movie& movie2)
  * @param movie2 - Movie object to make comparison on
  * @return true if both movie object titles are not identical; false otherwise
  */
-bool inline operator!=(const Movie& movie1, const Movie& movie2)
+inline bool operator!=(const Movie& movie1, const Movie& movie2)
 {
     return !(movie1 == movie2);
 }
@@ -219,4 +219,4 @@ istream &operator>>(istream &is, Certificate &certificate);
  */
 ostream &operator<<(ostream &os, Certificate certificate);
 
-#endif //CPP_COURSEWORK_MOVIE_H
+#endif //CPP_COURSEWORK_MOVIE_HPP

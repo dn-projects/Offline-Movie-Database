@@ -7,17 +7,19 @@
 
  Date        : Wednesday 6th May 2020
 *******************************************************************************/
-#ifndef CPP_COURSEWORK_MOVIEDATABASE_H
-#define CPP_COURSEWORK_MOVIEDATABASE_H
+#ifndef CPP_COURSEWORK_MOVIEDATABASE_HPP
+#define CPP_COURSEWORK_MOVIEDATABASE_HPP
 
 #include <iostream>
 #include <fstream>
 #include <iterator>
 #include <vector>
-#include "Movie.h++"
+#include "Movie.hpp"
 #include "MovieDatabase.hh"
 
 using namespace std;
+
+//TODO unique ptr?
 
 struct movieFilter
 {
@@ -110,4 +112,4 @@ ostream& operator<<(ostream& os, MovieDatabase& mdb);
 
 ostream& operator<<(ostream& os, vector<Movie> vec);
 
-#endif //CPP_COURSEWORK_MOVIEDATABASE_H
+#endif //CPP_COURSEWORK_MOVIEDATABASE_HPP

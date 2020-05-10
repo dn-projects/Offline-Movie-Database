@@ -13,8 +13,8 @@
 
 #include <string>
 #include <iostream>
-#include "Movie.h++"
-#include "MovieDatabase.h++"
+#include "Movie.hpp"
+#include "MovieDatabase.hpp"
 
 using namespace std;
 
@@ -23,24 +23,21 @@ using namespace std;
 int main()
 {
     Movie movie;
+    MovieDatabase movieDatabase;
 
+    ifstream ifs("films.txt", ifstream::in);
 
+    if(ifs)
+    {
+        ifs >> movieDatabase;
+        ifs.close();
+    }
+    else
+    {
+        cerr << "Error: unable to open input file" << endl;
+    }
 
-    //MovieDatabase movieDatabase;
-
-    //ifstream ifs("films.txt", ifstream::in);
-
-    //if(ifs)
-    //{
-    //    ifs >> movieDatabase;
-    //    ifs.close();
-    //}
-    //else
-    //{
-    //    cerr << "Error: unable to open input file" << endl;
-    //}
-
-    //cout << movieDatabase << endl << endl;
+    cout << movieDatabase << endl << endl;
 
 
 

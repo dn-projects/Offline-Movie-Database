@@ -4,7 +4,7 @@
 #include <algorithm>
 #include <iterator>
 #include <vector>
-#include "MovieDatabase.h++"
+#include "MovieDatabase.hpp"
 
 using namespace std;
 

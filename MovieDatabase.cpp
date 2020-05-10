@@ -11,8 +11,8 @@
 #include <string>
 #include <iostream>
 #include <sstream>
-#include "MovieDatabase.h++"
-#include "Movie.h++"
+#include "MovieDatabase.hpp"
+#include "Movie.hpp"
 
 using namespace std;
 
@@ -57,29 +57,19 @@ istream& operator>>(istream& is, MovieDatabase& movieDatabase)
     return is;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-ostream& operator<<(ostream& os, MovieDatabase& mdb)
+/**
+ *
+ *
+ * @param os
+ * @param movieDatabase
+ * @return
+ */
+ostream& operator<<(ostream& os, MovieDatabase& movieDatabase)
 {
-    return os << mdb.getMovieList();
-}
-
-ostream& operator<<(ostream& os, const vector<Movie> vec)
-{
-    for ( auto const& v : vec )
+    for (auto it  = std::begin(movieDatabase.getMovieList());
+              it != std::end(movieDatabase.getMovieList()); ++it)
     {
-        os << v << endl;
+        os << *it << endl;
     }
     return os;
 }

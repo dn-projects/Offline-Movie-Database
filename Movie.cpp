@@ -1,7 +1,7 @@
 /*******************************************************************************
  File        : Movie.cpp
 
- Description : The source file to Movie.h++
+ Description : Movie.h++ source file
 
  Author      : Dovydas Novikovas
 
@@ -11,7 +11,7 @@
 #include <iostream>
 #include <iomanip>
 #include <map>
-#include "Movie.h++"
+#include "Movie.hpp"
 #include "Movie.hh"
 
 using namespace std;
