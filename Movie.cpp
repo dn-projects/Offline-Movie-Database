@@ -44,6 +44,7 @@ istream& operator>>(istream& is, Movie& movie)
         else
         {
             is.clear(ios_base::failbit);
+            cerr << "Failed to generate Movie" << endl;
         }
     }
     return is;

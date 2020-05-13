@@ -6,7 +6,10 @@
  Description : The class contains a main method which will be used for running
                and testing the classes @Movie.cpp and @MovieDatabase.cpp.
                The class reads data from a file and populates a MovieDatabase
-               object(vector of Movie objects) with a series of 'Films'.
+               object(vector of Movie objects) with a series of 'Films'. Then
+               methods from MovieDatabase are used to answer specific queries.
+               The method also initialise two structs that display the test
+               harness for Movie and MovieDatabase.
 
  Author      : Dovydas Novikovas
 
@@ -21,14 +24,11 @@
 
 using namespace std;
 
-//TODO make test harness function for each class
-
 int main()
 {
-    Movie movie;
     MovieDatabase movieDatabase;
 
-    /*  1. Using "films.txt" to populate movieDatabase with data  */
+    //  1. Using "films.txt" to populate movieDatabase with data
     ifstream ifs("films.txt", ifstream::in);
     if(ifs)
     {
@@ -40,45 +40,29 @@ int main()
         cerr << "Error: unable to open input file" << endl;
     }
 
-    /*  2. Displaying all Movies in chronological order  */
-    cout << "FILMS IN CHRONOLOGICAL ORDER:\n" << movieDatabase << endl;
+    //  2. Displaying all Movies in chronological order
+    cout << "FILMS IN CHRONOLOGICAL ORDER:" << endl;
+    cout << movieDatabase << endl;
 
 
-    /*  3. Displaying the third longest 'Film-Noir'  */
+    //  3. Displaying the third longest 'Film-Noir'
+    cout << "\nTHIRD LONGEST FILM-NOIR:" << endl;
+    cout << *movieDatabase.printResult<Movie>() << endl;
 
 
-
-    /*  4. Displaying the eight most recent UNRATED film  */
-
-
-    /*  5. Displaying the film with the longest title  */
+    //  4. Displaying the eight most recent UNRATED film
+    cout << "\nEIGHT MOST RECENT UNRATED FILM:" << endl;
 
 
-/*******************************************************************************
-              TESTING Movie class and MovieDatabase class
-*******************************************************************************/
-    //movieDatabase.sort([](Movie& movie1, Movie& movie2) -> bool
-    //{
-    //    return movie1.getYear() < movie2.getYear();
-    //});
+    //  5. Displaying the film with the longest title
+    cout << "\nFILM WITH LONGEST TITLE:" << endl;
 
-    //cout << movieDatabase << endl << endl;
 
-    //movieDatabase.filter([](Movie &movie) -> bool
-    //{
-    //    return movie.getGenre() == "Film-Noir"; //TODO is '==' correct
-    //});
+    // Test harness for Movie class
+    //RunMovieTestHarness();
 
-//    cout << "printing movie by index: \n";
-//    Movie movie1 = movieDatabase.returnMovieIndex(0);
-//    cout << movie1 << endl;
-//
-//    cout << "printing movie by count: \n";
-//    movieDatabase.printMovieCount(0);
-
-    //movieDatabase.queryDatabase('*', 0, "");
-    //cout << "The movie is: " << endl << endl;
-    //cout << movieDatabase.queryDatabase(2, 3, "Film-Noir");
+    // Test harness for MovieDatabase class
+    //RunMovieDatabaseTestHarness();
 
     return 0;
 }

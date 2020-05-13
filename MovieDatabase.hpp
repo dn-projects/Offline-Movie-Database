@@ -18,69 +18,127 @@
 #ifndef CPP_COURSEWORK_MOVIEDATABASE_HPP
 #define CPP_COURSEWORK_MOVIEDATABASE_HPP
 
+#include <memory>
 #include <vector>
 #include "MovieDatabase.hh"
 #include "Movie.hpp"
 
-using namespace std;
+//TODO use functor, lambda, function pointer?
 
-//TODO unique ptr?
+using namespace std;
 
 class MovieDatabase
 {
 private:
 
-    vector<Movie> movieList;
+    vector< shared_ptr<Movie> > movieList;
 
 public:
 
     explicit MovieDatabase()
     = default;
 
-    /**
-     * an inline method to return the vector used to store Movies
-     *
-     * @return vector of Movies
-     */
-    inline vector<Movie> getMovieList() const
+
+
+    inline vector< shared_ptr<Movie> > getMovieList() const
     {
         return movieList;
     }
 
-    /**
-     * Adds a Movie passed in the parameter to the vector in MovieDatabase
-     *
-     * @param mov - Movie to add to the vector
-     */
-    inline void addMovieToDatabase(Movie mov)
+
+
+    inline void addMovieToDatabase(shared_ptr<Movie> movie)
     {
-        movieList.push_back(mov);
+        movieList.push_back(movie);
     }
 
-    /**
-     * Overloads the square brackets operator to access and retrieve a
-     * specified element in the vector
-     *
-     * @param index - int to access element position in vector
-     * @return Movie at specific element
-     */
-    inline Movie& operator[](const int& index)
+
+
+    inline shared_ptr<Movie> operator[](const int& index)
     {
         return movieList[index];
     }
 
-
-
-
-
-
-
-
-
     inline void sort()
     {
-        std::sort(movieList.begin(), movieList.end());
+        std::sort(movieList.begin(), movieList.end(),
+        [](shared_ptr<Movie> pointer1, shared_ptr<Movie> pointer2) -> bool
+        {
+            return *pointer1 < *pointer2;
+        });
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //template<typename T>
+//MovieDatabase filter(T selector)
+//{
+//    MovieDatabase vector;
+//
+//    for (const Movie& v : )
+//    {
+//        if(selector(v))
+//        {
+//            vector.addMovieToDatabase(v);
+//        }
+//    }
+//    return vector;
+//}
+
+
+
+    template <typename T>
+    bool ascending(T& obj1, T& obj2)
+    {
+        return obj1 < obj2;
+    }
+
+    template <typename T>
+    bool descending(T& obj1, T& obj2)
+    {
+        return obj1 > obj2;
+    }
+
+    inline void sort2()
+    {
+        //std::sort(movieList.begin(), movieList.end(), ascending<shared_ptr<Movie>>();
+    }
+
+
+
+
+
+    template <typename T>
+    shared_ptr<T> printResult()
+    {
+        return movieList[0];
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 
     template<typename T>
     inline void sort(T compare)
@@ -103,8 +161,6 @@ public:
 //        }
 //        return vector;
 //    }
-
-    //TODO testing function here
 };
 
 
@@ -147,5 +203,16 @@ istream& operator>>(istream& is, MovieDatabase& movieDatabase);
  * @return output stream after each film is passed to output
  */
 ostream& operator<<(ostream& os, MovieDatabase& movieDatabase);
+
+/**
+ * Struct used as test harness to test MovieDatabase class functionality
+ */
+struct RunMovieDatabaseTestHarness
+{
+    RunMovieDatabaseTestHarness()
+    {
+        cout << "---------------TESTING MOVIEDATABASE CLASS-----------------\n";
+    }
+};
 
 #endif //CPP_COURSEWORK_MOVIEDATABASE_HPP

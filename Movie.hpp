@@ -11,10 +11,21 @@
  Author      : Dovydas Novikovas
 
  Date        : Wednesday 6th May 2020
+
+ Notes       : Movie class does not implement the use of destructors because
+               the primitives used as my instance variables use their own
+               destructors and the enum class (Certificate) uses ints as the
+               underlying data type which uses its default destructor. Movie
+               class does not implement copy constructors or copy assignment
+               operators because it does not seem fit to be able to copy one
+               Movie into another hence 'Rule of three' is not in Movie class.
+
 *******************************************************************************/
 
 #ifndef CPP_COURSEWORK_MOVIE_HPP
 #define CPP_COURSEWORK_MOVIE_HPP
+
+#include <sstream>
 
 using namespace std;
 
@@ -26,6 +37,12 @@ enum class Certificate
     NOT_RATED, UNRATED, G, PG, PG_13, R, APPROVED, PASSED, N_A, TV_14, M, X
 };
 
+struct Genre
+{
+    //TODO set<Genre> genreSet;?   //bitfields for genre?
+    unsigned int Crime : 5;
+};
+
 class Movie
 {
 private :
@@ -33,7 +50,6 @@ private :
     string title;
     int year;
     string genre;
-    //TODO set<Genre> genreSet;?   //bitfields for genre?
     int duration;
     double rating;
     Certificate certificate;
@@ -42,15 +58,15 @@ public :
 
     Movie(string title = " *** EMPTY MOVIE *** ", int year = 0,
           Certificate cl = Certificate::NOT_RATED, string genre = "",
-          int duration = 0, double rating = 0)
-    {
-        this->title = title;
-        this->year = year;
-        this->certificate = cl;
-        this->genre = genre;
-        this->duration = duration;
-        this->rating = rating;
-    }
+          int duration = 0, double rating = 0) :
+
+        title(title),
+        year(year),
+        certificate(cl),
+        genre(genre),
+        duration(duration),
+        rating(rating){};
+
 
     /**
      * an inline method to return the title of a 'movie'
@@ -111,11 +127,6 @@ public :
     {
         return rating;
     }
-
-    //TODO check how to implement garbage collection
-    ~Movie()
-    = default;
-
 };
 
 /**
@@ -214,5 +225,87 @@ istream &operator>>(istream &is, Certificate &certificate);
  * @return output stream loaded with relevant Certificate from map
  */
 ostream &operator<<(ostream &os, Certificate certificate);
+
+/**
+ * Union used as test harness to test Movie class functionality
+ */
+union RunMovieTestHarness
+{
+    RunMovieTestHarness()
+    {
+        cout << "-------------------TESTING MOVIE CLASS---------------------\n";
+
+        cout << "DEFAULT MOVIE:\n";
+        Movie movie;
+        cout << movie << endl;
+        cout << "-----------------------------------------------------------\n";
+
+        cout << "MOVIE1:\n";
+        Movie movie1;
+        stringstream ssi(R"("The Godfather: Part II",1974,"R","Crime/Drama",202,0")");
+        ssi >> movie1;
+        cout << movie1 << endl;
+        cout << "-----------------------------------------------------------\n";
+
+        cout << "MOVIE2:\n";
+        Movie movie2;
+        stringstream ssii(R"("Rebecca",1940,"NOT RATED","Drama/Film-Noir/Mystery",130,0)");
+        ssii >> movie2;
+        cout << movie2 << endl;
+        cout << "-----------------------------------------------------------\n";
+
+        cout << "TESTING '==' OPERATOR:\n";
+        cout << "EXPECTED OUTCOME | FALSE |\n";
+        cout << "ACTUAL OUTCOME | ";
+        if( movie1 == movie2 )
+        {
+            cout << "TRUE |\n";
+        }
+        else
+        {
+            cout << "FALSE |\n";
+        }
+        cout << "-----------------------------------------------------------\n";
+
+        cout << "TESTING '!=' OPERATOR:\n";
+        cout << "EXPECTED OUTCOME | TRUE |\n";
+        cout << "ACTUAL OUTCOME | ";
+        if( movie1 != movie2 )
+        {
+            cout << "TRUE |\n";
+        }
+        else
+        {
+            cout << "FALSE |\n";
+        }
+        cout << "-----------------------------------------------------------\n";
+
+        cout << "TESTING '>' OPERATOR:\n";
+        cout << "EXPECTED OUTCOME | TRUE |\n";
+        cout << "ACTUAL OUTCOME | ";
+        if( movie1 > movie2 )
+        {
+            cout << "TRUE |\n";
+        }
+        else
+        {
+            cout << "FALSE |\n";
+        }
+        cout << "-----------------------------------------------------------\n";
+
+        cout << "TESTING '<' OPERATOR:\n";
+        cout << "EXPECTED OUTCOME | FALSE |\n";
+        cout << "ACTUAL OUTCOME | ";
+        if( movie1 < movie2 )
+        {
+            cout << "TRUE |\n";
+        }
+        else
+        {
+            cout << "FALSE |\n";
+        }
+        cout << "-----------------------------------------------------------\n";
+    }
+};
 
 #endif //CPP_COURSEWORK_MOVIE_HPP
