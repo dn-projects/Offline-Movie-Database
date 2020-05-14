@@ -26,6 +26,7 @@
 #define CPP_COURSEWORK_MOVIE_HPP
 
 #include <sstream>
+#include <ostream>
 
 using namespace std;
 
@@ -39,8 +40,17 @@ enum class Certificate
 
 struct Genre
 {
-    //TODO set<Genre> genreSet;?   //bitfields for genre?
-    unsigned int Crime : 5;
+
+    Genre()
+    {
+        memset(this,0,sizeof(*this));
+    }
+
+    uint8_t Action : 1, Adventure : 1, Animation : 1, Biography : 1,
+            Comedy : 1,     Crime : 1,     Drama : 1,    Family : 1,
+           Fantasy : 1, Film_Noir : 1,   History : 1,    Horror : 1,
+             Music : 1,   Musical : 1,   Mystery : 1,   Romance : 1,
+            Sci_Fi : 1,  Thriller : 1,       War : 1,   Western : 1;
 };
 
 class Movie
@@ -49,7 +59,7 @@ private :
 
     string title;
     int year;
-    string genre;
+    Genre genre;
     int duration;
     double rating;
     Certificate certificate;
@@ -57,7 +67,7 @@ private :
 public :
 
     Movie(string title = " *** EMPTY MOVIE *** ", int year = 0,
-          Certificate cl = Certificate::NOT_RATED, string genre = "",
+          Certificate cl = Certificate::NOT_RATED, Genre genre = Genre(),
           int duration = 0, double rating = 0) :
 
         title(title),
@@ -103,7 +113,7 @@ public :
      *
      * @return string representation of a movie genre
      */
-    inline string getGenre() const
+    inline Genre getGenre() const
     {
         return genre;
     }
@@ -225,6 +235,10 @@ istream &operator>>(istream &is, Certificate &certificate);
  * @return output stream loaded with relevant Certificate from map
  */
 ostream &operator<<(ostream &os, Certificate certificate);
+
+istream& operator>>(istream& is, Genre& genre);
+
+ostream& operator<<(ostream& os, const Genre& genre);
 
 /**
  * Union used as test harness to test Movie class functionality
