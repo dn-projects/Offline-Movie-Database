@@ -24,6 +24,13 @@
 
 using namespace std;
 
+//TODO comment
+//TODO test harness
+//TODO filter/sort method
+//TODO pointers
+//TODO garbage
+
+
 int main()
 {
     MovieDatabase movieDatabase;
@@ -42,7 +49,7 @@ int main()
 
     //  2. Displaying all Movies in chronological order
     cout << "FILMS IN CHRONOLOGICAL ORDER:" << endl;
-    //cout << movieDatabase << endl;
+    cout << movieDatabase << endl;
 
 
     //  3. Displaying the third longest 'Film-Noir'

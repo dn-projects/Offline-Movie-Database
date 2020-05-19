@@ -69,8 +69,44 @@ public:
     }
 
 
+    template <typename T>
+    bool sortAscending(T& x,T& y)
+    {
+        return x < y;
+    }
 
+    template <typename T>
+    bool sortDescending(T& x,T& y)
+    {
+        return x > y;
+    }
 
+    template <typename T>
+    void exchange(T& x, T& y)
+    {
+        T z = y;
+        y = x;
+        x = z;
+    }
+
+    template <typename T, unsigned N,typename F>
+    void sortCollection(T (&vector)[N], F disordered)
+    {
+        bool sorted;
+        do
+        {
+            exchange(vector[rand() % N], vector[rand() % N]);
+            sorted = true;
+
+            for (int i=1; i < N; i++)
+            {
+                if (disordered(vector[i], vector[i - 1]))
+                {
+                    sorted = false;
+                }
+            }
+        } while (!sorted);
+    }
 
 
 
@@ -207,7 +243,7 @@ ostream& operator<<(ostream& os, MovieDatabase& movieDatabase);
 /**
  * Struct used as test harness to test MovieDatabase class functionality
  */
-struct RunMovieDatabaseTestHarness
+union RunMovieDatabaseTestHarness
 {
     RunMovieDatabaseTestHarness()
     {
