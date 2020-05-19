@@ -27,11 +27,10 @@
 
 using namespace std;
 
-class MovieDatabase
-{
+class MovieDatabase {
 private:
 
-    vector< shared_ptr<Movie> > movieList;
+    vector<shared_ptr<Movie> > movieList;
 
 public:
 
@@ -39,183 +38,61 @@ public:
     = default;
 
 
-
-    inline vector< shared_ptr<Movie> > getMovieList() const
-    {
+    inline vector<shared_ptr<Movie> > getMovieList() const {
         return movieList;
     }
 
 
-
-    inline void addMovieToDatabase(shared_ptr<Movie> movie)
-    {
+    inline void addMovieToDatabase(shared_ptr<Movie> movie) {
         movieList.push_back(movie);
     }
 
 
-
-    inline shared_ptr<Movie> operator[](const int& index)
-    {
+    inline shared_ptr<Movie> operator[](const int &index) {
         return movieList[index];
     }
 
-    inline void sort()
-    {
+    inline void sort() {
         std::sort(movieList.begin(), movieList.end(),
-        [](shared_ptr<Movie> pointer1, shared_ptr<Movie> pointer2) -> bool
-        {
-            return *pointer1 < *pointer2;
-        });
+                  [](shared_ptr<Movie> pointer1,
+                     shared_ptr<Movie> pointer2) -> bool {
+                      return *pointer1 < *pointer2;
+                  });
     }
-
-
-    template <typename T>
-    bool sortAscending(T& x,T& y)
-    {
-        return x < y;
-    }
-
-    template <typename T>
-    bool sortDescending(T& x,T& y)
-    {
-        return x > y;
-    }
-
-    template <typename T>
-    void exchange(T& x, T& y)
-    {
-        T z = y;
-        y = x;
-        x = z;
-    }
-
-    template <typename T, unsigned N,typename F>
-    void sortCollection(T (&vector)[N], F disordered)
-    {
-        bool sorted;
-        do
-        {
-            exchange(vector[rand() % N], vector[rand() % N]);
-            sorted = true;
-
-            for (int i=1; i < N; i++)
-            {
-                if (disordered(vector[i], vector[i - 1]))
-                {
-                    sorted = false;
-                }
-            }
-        } while (!sorted);
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-    //template<typename T>
-//MovieDatabase filter(T selector)
-//{
-//    MovieDatabase vector;
-//
-//    for (const Movie& v : )
-//    {
-//        if(selector(v))
-//        {
-//            vector.addMovieToDatabase(v);
-//        }
-//    }
-//    return vector;
-//}
-
-
-
-    template <typename T>
-    bool ascending(T& obj1, T& obj2)
-    {
-        return obj1 < obj2;
-    }
-
-    template <typename T>
-    bool descending(T& obj1, T& obj2)
-    {
-        return obj1 > obj2;
-    }
-
-    inline void sort2()
-    {
-        //std::sort(movieList.begin(), movieList.end(), ascending<shared_ptr<Movie>>();
-    }
-
-
-
-
-
-    template <typename T>
-    shared_ptr<T> printResult()
-    {
-        return movieList[0];
-    }
-
-
-
-
-
-
-
-
-
-
-
-
 
     template<typename T>
-    inline void sort(T compare)
-    {
+    inline void sort(T compare) {
         std::sort(movieList.begin(), movieList.end(), compare);
     }
 
+    template<typename T, typename F>
+    void printResults(vector<T> vector, F &function) {
+        for (int i = 0; i < vector.size(); i++) {
+            if (function(*vector[i])) {
+                cout << *vector[i] << endl;
+            }
+        }
+    }
 
-//    template<typename T>
-//    MovieDatabase filter(T selector)
-//    {
-//        MovieDatabase vector;
-//
-//        for (const Movie& v : movieList)
-//        {
-//            if(selector(v))
-//            {
-//                vector.addMovieToDatabase(v);
-//            }
-//        }
-//        return vector;
-//    }
+
+    template <typename T, typename F>
+    void sortCollection(vector<T> vector, F function)
+    {
+
+            for(int i = 1; i < vector.size(); i++)
+            {
+                if(function(*vector[i-1], *vector[i]))
+                {
+                    cout << "sorted!" << endl;
+                }
+                else
+                {
+                    cout << "not sorted!" << endl;
+                }
+            }
+    }
+
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -24,12 +24,12 @@
 
 using namespace std;
 
-//TODO comment
-//TODO test harness
-//TODO filter/sort method
-//TODO pointers
-//TODO garbage
-
+//TODO comment []
+//TODO test harness []
+//TODO filter/sort method []
+//TODO pointers []
+//TODO garbage collection []
+//TODO bit fields []
 
 int main()
 {
@@ -49,11 +49,18 @@ int main()
 
     //  2. Displaying all Movies in chronological order
     cout << "FILMS IN CHRONOLOGICAL ORDER:" << endl;
-    cout << movieDatabase << endl;
-
+    //cout << movieDatabase << endl;
 
     //  3. Displaying the third longest 'Film-Noir'
     cout << "\nTHIRD LONGEST FILM-NOIR:" << endl;
+    cout << movieDatabase << endl;
+    cout << endl;
+    //Descending<Movie> descending;
+    Ascending<Movie> ascending;
+    movieDatabase.sortCollection(movieDatabase.getMovieList(), ascending);
+
+    //FilterFunction<Movie> filterFunction;
+    //movieDatabase.printResults(movieDatabase.getMovieList(), filterFunction);
     //cout << *movieDatabase.printResult<Movie>() << endl;
 
 
