@@ -50,7 +50,7 @@ int main()
 
     //  2. Displaying all Movies in chronological order
     cout << "FILMS IN CHRONOLOGICAL ORDER:" << endl;
-    //cout << movieDatabase << endl;
+    cout << movieDatabase << endl;
 
     //  3. Displaying the third longest 'Film-Noir'
     cout << "\nTHIRD LONGEST FILM-NOIR:" << endl;

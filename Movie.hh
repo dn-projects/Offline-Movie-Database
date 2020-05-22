@@ -56,63 +56,6 @@ static const map<Certificate, string> certificateToStringMap =
     {Certificate::X,         "X"},
 };
 
-
-istream& operator>>(istream& is, Genre& genre)
-{
-    map<string, function<void()> > stringToGenreMap =
-    {
-        {"Action",    [&] () { genre.Action = 1; } },
-        {"Adventure", [&] () { genre.Adventure = 1; } },
-        {"Animation", [&] () { genre.Animation = 1; } },
-        {"Biography", [&] () { genre.Biography = 1; } },
-        {"Comedy",    [&] () { genre.Comedy = 1; } },
-        {"Crime",     [&] () { genre.Crime = 1; } },
-        {"Drama",     [&] () { genre.Drama = 1; } },
-        {"Family",    [&] () { genre.Family = 1; } },
-        {"Fantasy",   [&] () { genre.Fantasy = 1; } },
-        {"Film-Noir", [&] () { genre.Film_Noir = 1; } },
-        {"History",   [&] () { genre.History = 1; } },
-        {"Horror",    [&] () { genre.Horror = 1; } },
-        {"Music",     [&] () { genre.Music = 1; } },
-        {"Musical",   [&] () { genre.Musical = 1; } },
-        {"Mystery",   [&] () { genre.Mystery = 1; } },
-        {"Romance",   [&] () { genre.Romance = 1; } },
-        {"Sci-Fi",    [&] () { genre.Sci_Fi = 1; } },
-        {"Thriller",  [&] () { genre.Thriller = 1; } },
-        {"War",       [&] () { genre.War = 1; } },
-        {"Western",   [&] () { genre.Western = 1; } },
-    };
-
-
-    char c;
-    string genreString;
-
-    //genre.Action = 1;
-    [&]() { genre.Action = 1; };
-
-
-    is >> c;
-    getline(is, genreString, '"');
-    string gen = genreString.substr(0, genreString.find("/"));
-    while(gen != "")
-    {
-        if(stringToGenreMap.count(gen) == 1)
-        {
-
-            stringToGenreMap.at(gen);
-        }
-        break;
-    }
-
-
-    //else
-    //{
-    //    is.clear(ios_base::failbit);
-    //    cerr << "Incorrect Genre" << endl;
-    //}
-    return is;
-}
-
 ostream& operator<<(ostream& os, const Genre& genre)
 {
     string returnString;
