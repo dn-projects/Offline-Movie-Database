@@ -1,7 +1,7 @@
 /*******************************************************************************
  File        : Movie.cpp
 
- Include     : Movie.hpp, Movie.hh
+ Include     : Movie.hpp
 
  Description : Contains the implementations for the overloaded input and output
                operators for class Movie.
@@ -16,7 +16,7 @@
 #include <iomanip>
 #include <map>
 #include "Movie.hpp"
-#include "Movie.hh"
+
 
 using namespace std;
 
@@ -41,7 +41,7 @@ istream& operator>>(istream& is, Movie& movie)
         else
         {
             is.clear(ios_base::failbit);
-            cerr << "Failed to generate Movie" << endl;
+            cerr << "Invalid Movie format" << endl;
         }
     }
     return is;
@@ -63,8 +63,26 @@ ostream& operator<<(ostream& os, const Movie& movie)
 /**
  * Function body for overloaded input operator for input stream, Certificate
  */
-istream &operator>>(istream& is, Certificate& certificate)
+istream& operator>>(istream& is, Certificate& certificate)
 {
+    // Map used to store the string to Certificate conversion
+    // with strings as keys and the Certificates as values
+    const map<string, Certificate> stringToCertificateMap =
+    {
+        {"NOT RATED", Certificate::NOT_RATED},
+        {"UNRATED",   Certificate::UNRATED},
+        {"G",         Certificate::G},
+        {"PG",        Certificate::PG},
+        {"PG-13",     Certificate::PG_13},
+        {"R",         Certificate::R},
+        {"APPROVED",  Certificate::APPROVED},
+        {"PASSED",    Certificate::PASSED},
+        {"N/A",       Certificate::N_A},
+        {"TV-14",     Certificate::TV_14},
+        {"M",         Certificate::M},
+        {"X",         Certificate::X},
+    };
+
     char c;
     string input;
 
@@ -86,38 +104,56 @@ istream &operator>>(istream& is, Certificate& certificate)
 /**
  * Function body for overloaded output operator for output stream, Certificate
  */
-ostream &operator<<(ostream& os, Certificate certificate)
+ostream& operator<<(ostream& os, const Certificate& certificate)
 {
+    // Map used to store the Certificate to string conversion
+    // with Certificates as keys and the strings as values
+    const map<Certificate, string> certificateToStringMap =
+    {
+        {Certificate::NOT_RATED, "NOT RATED"},
+        {Certificate::UNRATED,   "UNRATED"},
+        {Certificate::G,         "G"},
+        {Certificate::PG,        "PG"},
+        {Certificate::PG_13,     "PG-13"},
+        {Certificate::R,         "R"},
+        {Certificate::APPROVED,  "APPROVED"},
+        {Certificate::PASSED,    "PASSED"},
+        {Certificate::N_A,       "N/A"},
+        {Certificate::TV_14,     "TV-14"},
+        {Certificate::M,         "M"},
+        {Certificate::X,         "X"},
+    };
+
     return os << certificateToStringMap.at(certificate);
 }
 
 /**
- *
+ * Function body for overloaded input operator for input stream, Genre
  */
 istream& operator>>(istream& is, Genre& genre)
 {
-    map<string, function<void()> > stringToGenreMap =
+    const map<string, function<void()> > stringToGenreMap =
     {
-            {"Action",    [&] () { genre.Action = 1; } },
-            {"Adventure", [&] () { genre.Adventure = 1; } },
-            {"Animation", [&] () { genre.Animation = 1; } },
-            {"Biography", [&] () { genre.Biography = 1; } },
-            {"Comedy",    [&] () { genre.Comedy = 1; } },
-            {"Crime",     [&] () { genre.Crime = 1; } },
-            {"Drama",     [&] () { genre.Drama = 1; } },
-            {"Family",    [&] () { genre.Family = 1; } },
-            {"Fantasy",   [&] () { genre.Fantasy = 1; } },
-            {"Film-Noir", [&] () { genre.Film_Noir = 1; } },
-            {"History",   [&] () { genre.History = 1; } },
-            {"Horror",    [&] () { genre.Horror = 1; } },
-            {"Music",     [&] () { genre.Music = 1; } },
-            {"Musical",   [&] () { genre.Musical = 1; } },
-            {"Mystery",   [&] () { genre.Mystery = 1; } },
-            {"Romance",   [&] () { genre.Romance = 1; } },
-            {"Sci-Fi",    [&] () { genre.Sci_Fi = 1; } },
-            {"Thriller",  [&] () { genre.Thriller = 1; } },
-            {"War",       [&] () { genre.War = 1; } },
-            {"Western",   [&] () { genre.Western = 1; } },
+        {"Action",    [&] () { genre.Action = 1; } },
+        {"Adventure", [&] () { genre.Adventure = 1; } },
+        {"Animation", [&] () { genre.Animation = 1; } },
+        {"Biography", [&] () { genre.Biography = 1; } },
+        {"Comedy",    [&] () { genre.Comedy = 1; } },
+        {"Crime",     [&] () { genre.Crime = 1; } },
+        {"Drama",     [&] () { genre.Drama = 1; } },
+        {"Family",    [&] () { genre.Family = 1; } },
+        {"Fantasy",   [&] () { genre.Fantasy = 1; } },
+        {"Film-Noir", [&] () { genre.Film_Noir = 1; } },
+        {"History",   [&] () { genre.History = 1; } },
+        {"Horror",    [&] () { genre.Horror = 1; } },
+        {"Music",     [&] () { genre.Music = 1; } },
+        {"Musical",   [&] () { genre.Musical = 1; } },
+        {"Mystery",   [&] () { genre.Mystery = 1; } },
+        {"Romance",   [&] () { genre.Romance = 1; } },
+        {"Sci-Fi",    [&] () { genre.Sci_Fi = 1; } },
+        {"Thriller",  [&] () { genre.Thriller = 1; } },
+        {"War",       [&] () { genre.War = 1; } },
+        {"Western",   [&] () { genre.Western = 1; } },
     };
 
     string genreString, token;
@@ -136,6 +172,50 @@ istream& operator>>(istream& is, Genre& genre)
             is.clear(ios_base::failbit);
             cerr << "Invalid Genre" << endl;
         }
-    };
+    }
     return is;
+}
+
+/**
+ * Function body for overloaded output operator for output stream, Genre
+ */
+ostream& operator<<(ostream& os, const Genre& genre)
+{
+    string returnString;
+
+    const map< string, function<bool()> > genreToStringMap =
+    {
+        { "Action/",   [&] () -> bool { return genre.Action == 1; } },
+        {"Adventure/", [&] () -> bool { return genre.Adventure == 1; } },
+        {"Animation/", [&] () -> bool { return genre.Animation == 1; } },
+        {"Biography/", [&] () -> bool { return genre.Biography == 1; } },
+        {"Comedy/",    [&] () -> bool { return genre.Comedy == 1; } },
+        {"Crime/",     [&] () -> bool { return genre.Crime == 1; } },
+        {"Drama/",     [&] () -> bool { return genre.Drama == 1; } },
+        {"Family/",    [&] () -> bool { return genre.Family == 1; } },
+        {"Fantasy/",   [&] () -> bool { return genre.Fantasy == 1; } },
+        {"Film-Noir/", [&] () -> bool { return genre.Film_Noir == 1; } },
+        {"History/",   [&] () -> bool { return genre.History == 1; } },
+        {"Horror/",    [&] () -> bool { return genre.Horror == 1; } },
+        {"Music/",     [&] () -> bool { return genre.Music == 1; } },
+        {"Musical/",   [&] () -> bool { return genre.Musical == 1; } },
+        {"Mystery/",   [&] () -> bool { return genre.Mystery == 1; } },
+        {"Romance/",   [&] () -> bool { return genre.Romance == 1; } },
+        {"Sci-Fi/",    [&] () -> bool { return genre.Sci_Fi == 1; } },
+        {"Thriller/",  [&] () -> bool { return genre.Thriller == 1; } },
+        {"War/",       [&] () -> bool { return genre.War == 1; } },
+        {"Western/",   [&] () -> bool { return genre.Western == 1; } },
+    };
+
+    for (auto const& [key, value] : genreToStringMap)
+    {
+        if(value())
+        {
+            returnString += key;
+        }
+    }
+    // removes forward slash at the end of the string to format
+    returnString.pop_back();
+
+    return os << returnString;
 }

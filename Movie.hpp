@@ -149,7 +149,7 @@ public :
  * @return true if the int representation of the year of movie2 is greater than
  * the year of movie1; false otherwise
  */
-inline bool operator<(const Movie &movie1, const Movie &movie2)
+inline bool operator<(const Movie& movie1, const Movie& movie2)
 {
     return movie1.getYear() < movie2.getYear();
 }
@@ -204,7 +204,7 @@ inline bool operator!=(const Movie& movie1, const Movie& movie2)
  * @param movie - movie object to instantiate
  * @return returns the input stream
  */
-istream &operator>>(istream &is, Movie &movie);
+istream& operator>>(istream& is, Movie &movie);
 
 /**
  * Overloading the output operator to format a Movie object being sent passed
@@ -215,7 +215,7 @@ istream &operator>>(istream &is, Movie &movie);
  * @param movie - movie object to print out
  * @return the formatted output stream
  */
-ostream &operator<<(ostream &str, const Movie &movie);
+ostream& operator<<(ostream& str, const Movie &movie);
 
 /**
  * Overloading the input operator for input stream and Certificate, converts
@@ -226,7 +226,7 @@ ostream &operator<<(ostream &str, const Movie &movie);
  * @param certificate - Certificate to instate with the relevant certificate
  * @return input stream after a converted string into a Certificate
  */
-istream &operator>>(istream &is, Certificate &certificate);
+istream& operator>>(istream& is, Certificate &certificate);
 
 /**
  * Overloading the output operator to print out a certificate to a string
@@ -235,10 +235,22 @@ istream &operator>>(istream &is, Certificate &certificate);
  * @param certificate - Certificate object being passed to output stream
  * @return output stream loaded with relevant Certificate from map
  */
-ostream &operator<<(ostream &os, Certificate certificate);
+ostream& operator<<(ostream& os, const Certificate& certificate);
 
+/**
+ *
+ * @param is
+ * @param genre
+ * @return
+ */
 istream& operator>>(istream& is, Genre& genre);
 
+/**
+ *
+ * @param os
+ * @param genre
+ * @return
+ */
 ostream& operator<<(ostream& os, const Genre& genre);
 
 /**
