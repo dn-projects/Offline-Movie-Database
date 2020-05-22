@@ -53,6 +53,7 @@ struct Genre
             Sci_Fi : 1,  Thriller : 1,       War : 1,   Western : 1;
 };
 
+
 class Movie
 {
 private :

@@ -30,6 +30,7 @@ using namespace std;
 //TODO pointers []
 //TODO garbage collection []
 //TODO bit fields []
+//TODO check things are const []
 
 int main()
 {

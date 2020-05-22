@@ -12,13 +12,15 @@
 #ifndef CPP_COURSEWORK_MOVIE_HH
 #define CPP_COURSEWORK_MOVIE_HH
 
+#include <functional>
+
 using namespace std;
 
 /**
  * Map used to store the string to Certificate conversion with strings as keys
  * and the Certificates as values
  */
-static const map<string, Certificate> certificateInputMap =
+static const map<string, Certificate> stringToCertificateMap =
 {
     {"NOT RATED", Certificate::NOT_RATED},
     {"UNRATED",   Certificate::UNRATED},
@@ -38,7 +40,7 @@ static const map<string, Certificate> certificateInputMap =
  * Map used to store the Certificate to string conversion with Certificates as
  * keys and the strings as values
  */
-static const map<Certificate, string> certificateOutputMap =
+static const map<Certificate, string> certificateToStringMap =
 {
     {Certificate::NOT_RATED, "NOT RATED"},
     {Certificate::UNRATED,   "UNRATED"},
@@ -54,103 +56,60 @@ static const map<Certificate, string> certificateOutputMap =
     {Certificate::X,         "X"},
 };
 
+
 istream& operator>>(istream& is, Genre& genre)
 {
+    map<string, function<void()> > stringToGenreMap =
+    {
+        {"Action",    [&] () { genre.Action = 1; } },
+        {"Adventure", [&] () { genre.Adventure = 1; } },
+        {"Animation", [&] () { genre.Animation = 1; } },
+        {"Biography", [&] () { genre.Biography = 1; } },
+        {"Comedy",    [&] () { genre.Comedy = 1; } },
+        {"Crime",     [&] () { genre.Crime = 1; } },
+        {"Drama",     [&] () { genre.Drama = 1; } },
+        {"Family",    [&] () { genre.Family = 1; } },
+        {"Fantasy",   [&] () { genre.Fantasy = 1; } },
+        {"Film-Noir", [&] () { genre.Film_Noir = 1; } },
+        {"History",   [&] () { genre.History = 1; } },
+        {"Horror",    [&] () { genre.Horror = 1; } },
+        {"Music",     [&] () { genre.Music = 1; } },
+        {"Musical",   [&] () { genre.Musical = 1; } },
+        {"Mystery",   [&] () { genre.Mystery = 1; } },
+        {"Romance",   [&] () { genre.Romance = 1; } },
+        {"Sci-Fi",    [&] () { genre.Sci_Fi = 1; } },
+        {"Thriller",  [&] () { genre.Thriller = 1; } },
+        {"War",       [&] () { genre.War = 1; } },
+        {"Western",   [&] () { genre.Western = 1; } },
+    };
+
+
     char c;
     string genreString;
 
+    //genre.Action = 1;
+    [&]() { genre.Action = 1; };
+
+
     is >> c;
-
-    if(c == '"')
+    getline(is, genreString, '"');
+    string gen = genreString.substr(0, genreString.find("/"));
+    while(gen != "")
     {
-        getline(is, genreString, '"');
+        if(stringToGenreMap.count(gen) == 1)
+        {
 
-        if(genreString.find("Action") != string::npos)
-        {
-            genre.Action = 1;
+            stringToGenreMap.at(gen);
         }
-        if(genreString.find("Adventure") != string::npos)
-        {
-            genre.Adventure = 1;
-        }
-        if(genreString.find("Animation") != string::npos)
-        {
-            genre.Animation = 1;
-        }
-        if(genreString.find("Biography") != string::npos)
-        {
-            genre.Biography = 1;
-        }
-        if(genreString.find("Comedy") != string::npos)
-        {
-            genre.Comedy = 1;
-        }
-        if(genreString.find("Crime") != string::npos)
-        {
-            genre.Crime = 1;
-        }
-        if(genreString.find("Drama") != string::npos)
-        {
-            genre.Drama = 1;
-        }
-        if(genreString.find("Family") != string::npos)
-        {
-            genre.Family = 1;
-        }
-        if(genreString.find("Fantasy") != string::npos)
-        {
-            genre.Fantasy = 1;
-        }
-        if(genreString.find("Film-Noir") != string::npos)
-        {
-            genre.Film_Noir = 1;
-        }
-        if(genreString.find("History") != string::npos)
-        {
-            genre.History = 1;
-        }
-        if(genreString.find("Horror") != string::npos)
-        {
-            genre.Horror = 1;
-        }
-        if(genreString.find("Music") != string::npos)
-        {
-            genre.Music = 1;
-        }
-        if(genreString.find("Musical") != string::npos)
-        {
-            genre.Musical = 1;
-        }
-        if(genreString.find("Mystery") != string::npos)
-        {
-            genre.Mystery = 1;
-        }
-        if(genreString.find("Romance") != string::npos)
-        {
-            genre.Romance = 1;
-        }
-        if(genreString.find("Sci-Fi") != string::npos)
-        {
-            genre.Sci_Fi = 1;
-        }
-        if(genreString.find("Thriller") != string::npos)
-        {
-            genre.Thriller = 1;
-        }
-        if(genreString.find("War") != string::npos)
-        {
-            genre.War = 1;
-        }
-        if(genreString.find("Western") != string::npos)
-        {
-            genre.Western = 1;
-        }
+        break;
     }
-    else
-    {
-        is.clear(ios_base::failbit);
-        cerr << "Incorrect Genre" << endl;
-    }
+
+
+    //else
+    //{
+    //    is.clear(ios_base::failbit);
+    //    cerr << "Incorrect Genre" << endl;
+    //}
     return is;
 }
 

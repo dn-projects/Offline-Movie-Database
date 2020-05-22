@@ -71,9 +71,9 @@ istream &operator>>(istream& is, Certificate& certificate)
     is >> c;
 
     getline(is, input, '"');
-    if (certificateInputMap.count(input) == 1)
+    if (stringToCertificateMap.count(input) == 1)
     {
-        certificate = certificateInputMap.at(input);
+        certificate = stringToCertificateMap.at(input);
     }
     else
     {
@@ -88,5 +88,5 @@ istream &operator>>(istream& is, Certificate& certificate)
  */
 ostream &operator<<(ostream& os, Certificate certificate)
 {
-    return os << certificateOutputMap.at(certificate);
+    return os << certificateToStringMap.at(certificate);
 }
