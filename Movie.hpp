@@ -54,15 +54,6 @@ struct Genre
 
 
 };
-inline bool operator==(const Genre& genre1, const Genre& genre2)
-{
-    return genre1 == genre2;
-}
-
-inline bool operator!=(const Genre& genre1, const Genre& genre2)
-{
-    return !(genre1 == genre2);
-}
 
 class Movie
 {

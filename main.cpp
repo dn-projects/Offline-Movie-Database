@@ -53,35 +53,25 @@ int main()
 
     //  2. Displaying all Movies in chronological order
     cout << "FILMS IN CHRONOLOGICAL ORDER:" << endl;
-    //cout << movieDatabase << endl;
+    //cout << movieDatabase;
 
     //  3. Displaying the third longest 'Film-Noir'
     cout << "\nTHIRD LONGEST FILM-NOIR:" << endl;
 
 
-    //movieDatabase.sortByTitle(false);
-    //movieDatabase.sortByYear(true);
-    //movieDatabase.sortByCertificate(true);
-    //movieDatabase.sortByDuration(false);
-    //movieDatabase.sortByRating(false);
+
+    //cout << movieDatabase << endl;
+    movieDatabase.filterTitleByPredicate("Ikiru");
+    //movieDatabase.filterGenreByPredicate("Film-Noir");
+    cout << movieDatabase << endl;
+    //cout << *movieDatabase.movieByIndex(1);
+
 
     //movieDatabase.filterGenreByPredicate(Genre().Film_Noir);
     //cout << movieDatabase;
-    movieDatabase.filterGenreByPredicate("Film-Noir");
-    cout << movieDatabase;
-
-
-
-
+    //movieDatabase.filterGenreByPredicate("Film-Noir");
     //cout << movieDatabase;
-    //movieDatabase.sort([](shared_ptr<Movie> mv1, shared_ptr<Movie> mv2) -> bool {return *mv1 > *mv2;});
-    //movieDatabase.sort(Descending<shared_ptr<Movie>>());
-    //cout << movieDatabase << endl;
-    //movieDatabase.sortCollection(movieDatabase.getMovieList(), ascending);
 
-    //FilterFunction<Movie> filterFunction;
-    //movieDatabase.printResults(movieDatabase.getMovieList(), filterFunction);
-    //cout << *movieDatabase.printResult<Movie>() << endl;
 
 
     //  4. Displaying the eight most recent UNRATED film
@@ -90,7 +80,8 @@ int main()
 
     //  5. Displaying the film with the longest title
     cout << "\nFILM WITH LONGEST TITLE:" << endl;
-
+    //movieDatabase.sortByTitleLength(false);
+    //cout << *movieDatabase.movieByIndex(1) << endl;
 
     // Test harness for Movie class
     //RunMovieTestHarness();

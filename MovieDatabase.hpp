@@ -27,7 +27,8 @@
 
 using namespace std;
 
-class MovieDatabase {
+class MovieDatabase
+{
 private:
 
     vector<shared_ptr<Movie> > movieList;
@@ -65,23 +66,21 @@ public:
                      });
     }
 
-
-    //inline void sortAscending()
-    //{
-        //TODO not generic
-    //    std::sort(movieList.begin(), movieList.end(), [](shared_ptr<Movie> movie1, shared_ptr<Movie> movie2) -> bool {return *movie1 < *movie2;});
-    //}
-
-    //inline void sortDescending()
-    //{
-        //TODO not generic
-    //    std::sort(movieList.begin(), movieList.end(), [](shared_ptr<Movie> movie1, shared_ptr<Movie> movie2) -> bool {return *movie1 > *movie2;});
-    //}
-
     template <typename T>
     inline void sort(T compare)
     {
         std::sort(movieList.begin(), movieList.end(), compare);
+    }
+
+    shared_ptr<Movie> movieByIndex(int i)
+    {
+        int index = i < 1? 1 : i;
+
+        auto iter = movieList.begin();
+
+        auto movie = next(iter, index - 1);
+
+        return *movie;
     }
 
     void sortByTitle(bool ascending)
@@ -95,6 +94,20 @@ public:
         std::sort(movieList.begin(), movieList.end(), [](shared_ptr<Movie> movie1, shared_ptr<Movie> movie2) -> bool
         {
             return movie1->getTitle() > movie2->getTitle();
+        });
+    }
+
+    void sortByTitleLength(bool ascending)
+    {
+        ascending?
+        std::sort(movieList.begin(), movieList.end(), [](shared_ptr<Movie> movie1, shared_ptr<Movie> movie2) -> bool
+        {
+            return movie1->getTitle().length() < movie2->getTitle().length();
+        })
+        :
+        std::sort(movieList.begin(), movieList.end(), [](shared_ptr<Movie> movie1, shared_ptr<Movie> movie2) -> bool
+        {
+            return movie1->getTitle().length() > movie2->getTitle().length();
         });
     }
 
@@ -171,60 +184,71 @@ public:
         });
     }
 
-
-
-
-    bool Check(shared_ptr<Movie> mov)
+    void filterTitleByPredicate(string predicate)
     {
-        Genre gen;
-        string genre = "Film-Noir";
-        string str ;
+        string str1 = predicate;
+        string str2;
 
-        istringstream(genre) >> gen;
-
-        ostringstream os;
-
-        os << mov->getGenre();
-
-        str = os.str();
-
-        if(str.find(genre) != string::npos)
+        remove_if(movieList.begin(), movieList.end(), [&](shared_ptr<Movie> movie)
         {
-            return false;
-        }
-        return true;
+            str2 = movie->getTitle();
+            return movie->getTitle().find(predicate) == string::npos;
+        });
     }
 
-    void filterGenreByPredicate(string genre)
+
+
+
+
+
+
+
+
+
+
+//    void filterGenreByPredicate(string genreString)
+//    {
+//        //TODO std::next() to get nth term
+//        Genre genre;
+//        string cmpString;
+//
+//        istringstream(genreString) >> genre;
+//
+//        ostringstream os;
+//
+//        os << getGenre();
+//
+//        cmpString = os.str();
+//
+//        if(cmpString.find(genre) != string::npos)
+//        {
+//            return false;
+//        }
+//        return true;
+//    }
+
+    void filterGenreByPredicate(string genreString)
     {
-        //Genre gen;
-        //string str;
+        Genre genre;
+        string cmpString;
 
-        //istringstream(genre) >> gen;
-
-        remove_if(movieList.begin(), movieList.end(), [&](shared_ptr<Movie> mov){Genre gen;
-
-            string str ;
-
-            istringstream(genre) >> gen;
+        remove_if(movieList.begin(), movieList.end(), [&](shared_ptr<Movie> movie)
+        {
+            istringstream(genreString) >> genre;
 
             ostringstream os;
 
-            os << mov->getGenre();
+            os << movie->getGenre();
 
-            str = os.str();
+            cmpString = os.str();
 
-            if(str.find(genre) != string::npos)
-            {
-                return false;
-            }
-            return true;});
+            return cmpString.find(genreString) == string::npos;
+        });
 
 
 //        for (shared_ptr<Movie> movie : movieList)
 //        {
-//            ostringstream os;
-//
+//             ostringstream os;
 //            os << movie->getGenre();
 //
 //            str = os.str();
@@ -233,67 +257,9 @@ public:
 //            {
 //                cout << *movie << endl;
 //            }
-//
 //        }
     }
-
-
-
-
-    template <typename T>
-    void exchange(T& x, T& y)
-    {
-        T z = y; y = x; x = z;
-    }
-
-
-
-
-
-
-
-
-
-    template <typename T>
-    struct FilterFunction
-    {
-        bool operator()(T& check)
-        {
-            if(check.getGenre().Film_Noir)
-            {
-                return true;
-            }
-            return false;
-        }
-    };
-
 };
-
-
-template <typename T>
-struct Ascending
-{
-    bool operator()(T& x, T& y)
-    {
-        return x < y;
-    }
-};
-
-template <typename T>
-struct Descending
-{
-    bool operator()(T& x, T& y)
-    {
-        return x > y;
-    }
-};
-
-
-
-
-
-
-
 
 
 
@@ -321,7 +287,7 @@ istream& operator>>(istream& is, MovieDatabase& movieDatabase);
 ostream& operator<<(ostream& os, MovieDatabase& movieDatabase);
 
 /**
- * Struct used as test harness to test MovieDatabase class functionality
+ * Union used as test harness to test MovieDatabase class functionality
  */
 union RunMovieDatabaseTestHarness
 {
