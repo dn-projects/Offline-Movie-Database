@@ -17,6 +17,7 @@
 *******************************************************************************/
 
 #include <string>
+#include <functional>
 #include <iostream>
 #include <fstream>
 #include "Movie.hpp"
@@ -26,6 +27,8 @@ using namespace std;
 
 //TODO comment []
 //TODO test harness []
+
+
 //TODO filter/sort method []
 //TODO pointers []
 //TODO garbage collection []
@@ -54,10 +57,26 @@ int main()
 
     //  3. Displaying the third longest 'Film-Noir'
     cout << "\nTHIRD LONGEST FILM-NOIR:" << endl;
+
+
+    //movieDatabase.sortByTitle(false);
+    //movieDatabase.sortByYear(true);
+    //movieDatabase.sortByCertificate(true);
+    //movieDatabase.sortByDuration(false);
+    //movieDatabase.sortByRating(false);
+
+    //movieDatabase.filterGenreByPredicate(Genre().Film_Noir);
+    //cout << movieDatabase;
+    movieDatabase.filterGenreByPredicate("Film-Noir");
+    cout << movieDatabase;
+
+
+
+
+    //cout << movieDatabase;
+    //movieDatabase.sort([](shared_ptr<Movie> mv1, shared_ptr<Movie> mv2) -> bool {return *mv1 > *mv2;});
+    //movieDatabase.sort(Descending<shared_ptr<Movie>>());
     //cout << movieDatabase << endl;
-    //cout << endl;
-    //Descending<Movie> descending;
-    //Ascending<Movie> ascending;
     //movieDatabase.sortCollection(movieDatabase.getMovieList(), ascending);
 
     //FilterFunction<Movie> filterFunction;

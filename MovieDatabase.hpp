@@ -1,7 +1,7 @@
 /*******************************************************************************
  File        : MovieDatabase.hpp
 
- Include     : MovieDatabase.hh, Movie.hpp
+ Include     : Movie.hpp
 
  Description : A class made to mimic a database by implementing a vector that
                stores Movie objects. The class overloads the input and output
@@ -20,7 +20,7 @@
 
 #include <memory>
 #include <vector>
-#include "MovieDatabase.hh"
+
 #include "Movie.hpp"
 
 //TODO use functor, lambda, function pointer?
@@ -38,61 +38,264 @@ public:
     = default;
 
 
-    inline vector<shared_ptr<Movie> > getMovieList() const {
+    inline vector<shared_ptr<Movie> > getMovieList() const
+    {
         return movieList;
     }
 
 
-    inline void addMovieToDatabase(shared_ptr<Movie> movie) {
+    inline void addMovieToDatabase(shared_ptr<Movie> movie)
+    {
         movieList.push_back(movie);
     }
 
 
-    inline shared_ptr<Movie> operator[](const int &index) {
+    inline shared_ptr<Movie> operator[](const int &index)
+    {
         return movieList[index];
     }
 
-    inline void sort() {
+    inline void sort()
+    {
         std::sort(movieList.begin(), movieList.end(),
                   [](shared_ptr<Movie> pointer1,
-                     shared_ptr<Movie> pointer2) -> bool {
-                      return *pointer1 < *pointer2;
-                  });
+                     shared_ptr<Movie> pointer2) -> bool
+                     {
+                        return *pointer1 < *pointer2;
+                     });
     }
 
-    template<typename T>
-    inline void sort(T compare) {
+
+    //inline void sortAscending()
+    //{
+        //TODO not generic
+    //    std::sort(movieList.begin(), movieList.end(), [](shared_ptr<Movie> movie1, shared_ptr<Movie> movie2) -> bool {return *movie1 < *movie2;});
+    //}
+
+    //inline void sortDescending()
+    //{
+        //TODO not generic
+    //    std::sort(movieList.begin(), movieList.end(), [](shared_ptr<Movie> movie1, shared_ptr<Movie> movie2) -> bool {return *movie1 > *movie2;});
+    //}
+
+    template <typename T>
+    inline void sort(T compare)
+    {
         std::sort(movieList.begin(), movieList.end(), compare);
     }
 
-    template<typename T, typename F>
-    void printResults(vector<T> vector, F &function) {
-        for (int i = 0; i < vector.size(); i++) {
-            if (function(*vector[i])) {
-                cout << *vector[i] << endl;
-            }
-        }
-    }
-
-
-    template <typename T, typename F>
-    void sortCollection(vector<T> vector, F function)
+    void sortByTitle(bool ascending)
     {
-
-            for(int i = 1; i < vector.size(); i++)
-            {
-                if(function(*vector[i-1], *vector[i]))
-                {
-                    cout << "sorted!" << endl;
-                }
-                else
-                {
-                    cout << "not sorted!" << endl;
-                }
-            }
+        ascending?
+        std::sort(movieList.begin(), movieList.end(), [](shared_ptr<Movie> movie1, shared_ptr<Movie> movie2) -> bool
+        {
+            return movie1->getTitle() < movie2->getTitle();
+        })
+        :
+        std::sort(movieList.begin(), movieList.end(), [](shared_ptr<Movie> movie1, shared_ptr<Movie> movie2) -> bool
+        {
+            return movie1->getTitle() > movie2->getTitle();
+        });
     }
+
+    void sortByYear(bool ascending)
+    {
+        ascending?
+        std::sort(movieList.begin(), movieList.end(), [](shared_ptr<Movie> movie1, shared_ptr<Movie> movie2) -> bool
+        {
+            return movie1->getYear() < movie2->getYear();
+        })
+        :
+        std::sort(movieList.begin(), movieList.end(), [](shared_ptr<Movie> movie1, shared_ptr<Movie> movie2) -> bool
+        {
+            return movie1->getYear() > movie2->getYear();
+        });
+    }
+
+    void sortByCertificate(bool ascending)
+    {
+        ascending?
+        std::sort(movieList.begin(), movieList.end(), [](shared_ptr<Movie> movie1, shared_ptr<Movie> movie2) -> bool
+        {
+            return movie1->getCertificate() < movie2->getCertificate();
+        })
+        :
+        std::sort(movieList.begin(), movieList.end(), [](shared_ptr<Movie> movie1, shared_ptr<Movie> movie2) -> bool
+        {
+            return movie1->getCertificate() > movie2->getCertificate();
+        });
+    }
+
+    //TODO explain why genre sort not implemented
+    /*
+    void sortByGenre(bool ascending)
+    {
+        ascending?
+        std::sort(movieList.begin(), movieList.end(), [](shared_ptr<Movie> movie1, shared_ptr<Movie> movie2) -> bool
+        {
+            return movie1->getGenre() < movie2->getGenre();
+        })
+        :
+        std::sort(movieList.begin(), movieList.end(), [](shared_ptr<Movie> movie1, shared_ptr<Movie> movie2) -> bool
+        {
+            return movie1->getGenre() > movie2->getGenre();
+        });
+    }
+    */
+
+    void sortByDuration(bool ascending)
+    {
+        ascending?
+        std::sort(movieList.begin(), movieList.end(), [](shared_ptr<Movie> movie1, shared_ptr<Movie> movie2) -> bool
+        {
+            return movie1->getDuration() < movie2->getDuration();
+        })
+                 :
+        std::sort(movieList.begin(), movieList.end(), [](shared_ptr<Movie> movie1, shared_ptr<Movie> movie2) -> bool
+        {
+            return movie1->getDuration() > movie2->getDuration();
+        });
+    }
+
+    void sortByRating(bool ascending)
+    {
+        ascending?
+        std::sort(movieList.begin(), movieList.end(), [](shared_ptr<Movie> movie1, shared_ptr<Movie> movie2) -> bool
+        {
+            return movie1->getRating() < movie2->getRating();
+        })
+                 :
+        std::sort(movieList.begin(), movieList.end(), [](shared_ptr<Movie> movie1, shared_ptr<Movie> movie2) -> bool
+        {
+            return movie1->getRating() > movie2->getRating();
+        });
+    }
+
+
+
+
+    bool Check(shared_ptr<Movie> mov)
+    {
+        Genre gen;
+        string genre = "Film-Noir";
+        string str ;
+
+        istringstream(genre) >> gen;
+
+        ostringstream os;
+
+        os << mov->getGenre();
+
+        str = os.str();
+
+        if(str.find(genre) != string::npos)
+        {
+            return false;
+        }
+        return true;
+    }
+
+    void filterGenreByPredicate(string genre)
+    {
+        //Genre gen;
+        //string str;
+
+        //istringstream(genre) >> gen;
+
+        remove_if(movieList.begin(), movieList.end(), [&](shared_ptr<Movie> mov){Genre gen;
+
+            string str ;
+
+            istringstream(genre) >> gen;
+
+            ostringstream os;
+
+            os << mov->getGenre();
+
+            str = os.str();
+
+            if(str.find(genre) != string::npos)
+            {
+                return false;
+            }
+            return true;});
+
+
+//        for (shared_ptr<Movie> movie : movieList)
+//        {
+//            ostringstream os;
+//
+//            os << movie->getGenre();
+//
+//            str = os.str();
+//
+//            if(str.find(genre) != string::npos)
+//            {
+//                cout << *movie << endl;
+//            }
+//
+//        }
+    }
+
+
+
+
+    template <typename T>
+    void exchange(T& x, T& y)
+    {
+        T z = y; y = x; x = z;
+    }
+
+
+
+
+
+
+
+
+
+    template <typename T>
+    struct FilterFunction
+    {
+        bool operator()(T& check)
+        {
+            if(check.getGenre().Film_Noir)
+            {
+                return true;
+            }
+            return false;
+        }
+    };
 
 };
+
+
+template <typename T>
+struct Ascending
+{
+    bool operator()(T& x, T& y)
+    {
+        return x < y;
+    }
+};
+
+template <typename T>
+struct Descending
+{
+    bool operator()(T& x, T& y)
+    {
+        return x > y;
+    }
+};
+
+
+
+
+
+
+
+
+
 
 
 

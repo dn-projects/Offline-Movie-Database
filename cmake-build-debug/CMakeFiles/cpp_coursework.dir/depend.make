@@ -6,11 +6,9 @@ CMakeFiles/cpp_coursework.dir/Movie.cpp.o: ../Movie.hpp
 
 CMakeFiles/cpp_coursework.dir/MovieDatabase.cpp.o: ../Movie.hpp
 CMakeFiles/cpp_coursework.dir/MovieDatabase.cpp.o: ../MovieDatabase.cpp
-CMakeFiles/cpp_coursework.dir/MovieDatabase.cpp.o: ../MovieDatabase.hh
 CMakeFiles/cpp_coursework.dir/MovieDatabase.cpp.o: ../MovieDatabase.hpp
 
 CMakeFiles/cpp_coursework.dir/main.cpp.o: ../Movie.hpp
-CMakeFiles/cpp_coursework.dir/main.cpp.o: ../MovieDatabase.hh
 CMakeFiles/cpp_coursework.dir/main.cpp.o: ../MovieDatabase.hpp
 CMakeFiles/cpp_coursework.dir/main.cpp.o: ../main.cpp
 

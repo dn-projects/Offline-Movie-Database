@@ -89,9 +89,6 @@
 		<Unit filename="/Users/david/Desktop/testy/Offline-Movie-Database/MovieDatabase.cpp">
 			<Option target="cpp_coursework"/>
 		</Unit>
-		<Unit filename="/Users/david/Desktop/testy/Offline-Movie-Database/MovieDatabase.hh">
-			<Option target="cpp_coursework"/>
-		</Unit>
 		<Unit filename="/Users/david/Desktop/testy/Offline-Movie-Database/MovieDatabase.hpp">
 			<Option target="cpp_coursework"/>
 		</Unit>

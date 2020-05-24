@@ -51,8 +51,18 @@ struct Genre
            Fantasy : 1, Film_Noir : 1,   History : 1,    Horror : 1,
              Music : 1,   Musical : 1,   Mystery : 1,   Romance : 1,
             Sci_Fi : 1,  Thriller : 1,       War : 1,   Western : 1;
-};
 
+
+};
+inline bool operator==(const Genre& genre1, const Genre& genre2)
+{
+    return genre1 == genre2;
+}
+
+inline bool operator!=(const Genre& genre1, const Genre& genre2)
+{
+    return !(genre1 == genre2);
+}
 
 class Movie
 {
@@ -178,7 +188,7 @@ inline bool operator>(const Movie& movie1, const Movie& movie2)
  */
 inline bool operator==(const Movie& movie1, const Movie& movie2)
 {
-    return (movie1.getTitle() == movie2.getTitle());
+    return movie1.getTitle() == movie2.getTitle();
 }
 
 /**
