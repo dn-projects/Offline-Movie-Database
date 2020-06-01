@@ -56,31 +56,12 @@ public:
         return movieList[index];
     }
 
+    /**
+     * Default sort
+     */
     inline void sort()
     {
-        std::sort(movieList.begin(), movieList.end(),
-                  [](shared_ptr<Movie> pointer1,
-                     shared_ptr<Movie> pointer2) -> bool
-                     {
-                        return *pointer1 < *pointer2;
-                     });
-    }
-
-    template <typename T>
-    inline void sort(T compare)
-    {
-        std::sort(movieList.begin(), movieList.end(), compare);
-    }
-
-    shared_ptr<Movie> movieByIndex(int i)
-    {
-        int index = i < 1? 1 : i;
-
-        auto iter = movieList.begin();
-
-        auto movie = next(iter, index - 1);
-
-        return *movie;
+        sortByYear(true);
     }
 
     void sortByTitle(bool ascending)
@@ -116,12 +97,12 @@ public:
         ascending?
         std::sort(movieList.begin(), movieList.end(), [](shared_ptr<Movie> movie1, shared_ptr<Movie> movie2) -> bool
         {
-            return movie1->getYear() < movie2->getYear();
+            return *movie1 < *movie2;
         })
         :
         std::sort(movieList.begin(), movieList.end(), [](shared_ptr<Movie> movie1, shared_ptr<Movie> movie2) -> bool
         {
-            return movie1->getYear() > movie2->getYear();
+            return *movie1 > *movie2;
         });
     }
 
@@ -184,6 +165,27 @@ public:
         });
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     void filterTitleByPredicate(string predicate)
     {
         string str1 = predicate;
@@ -195,14 +197,6 @@ public:
             return movie->getTitle().find(predicate) == string::npos;
         });
     }
-
-
-
-
-
-
-
-
 
 
 
@@ -260,6 +254,20 @@ public:
 //        }
     }
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
