@@ -81,7 +81,7 @@ int main()
     //  5. Displaying the film with the longest title
     cout << "\nFILM WITH LONGEST TITLE:" << endl;
     //movieDatabase.sortByTitleLength(false);
-    //cout << *movieDatabase[0] << endl;
+    //cout << * movieDatabase[0] << endl;
 
     // Test harness for Movie class
     //RunMovieTestHarness();

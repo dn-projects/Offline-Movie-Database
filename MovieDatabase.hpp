@@ -23,7 +23,6 @@
 
 #include "Movie.hpp"
 
-//TODO use functor, lambda, function pointer?
 
 using namespace std;
 
@@ -164,7 +163,6 @@ public:
             return movie1->getRating() > movie2->getRating();
         });
     }
-
 
 
 
