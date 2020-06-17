@@ -220,78 +220,9 @@ public:
         });
     }
 
+    MovieDatabase filterByPredicate(Filter filter, string predicate);
 
-
-    MovieDatabase filterByPredicate(Filter filter, string predicate)
-    {
-        const map<Filter, function<bool(shared_ptr<Movie>)> > filterMap =
-        {
-                { Filter::TITLE, [predicate](shared_ptr<Movie> movie)
-                {
-                    return movie->getTitle() == predicate;
-                } },
-
-                { Filter::YEAR, [predicate](shared_ptr<Movie> movie)
-                {
-                    return movie->getYear() == stoi(predicate);
-                } },
-
-                { Filter::CERTIFICATE, [predicate](shared_ptr<Movie> movie)
-                {
-                    Certificate certificate;
-                    stringstream ss('"' + predicate);
-
-                    ss >> certificate;
-
-                    return movie->getCertificate() == certificate;
-                } },
-
-                { Filter::GENRE, [predicate](shared_ptr<Movie> movie)
-                {
-                    Genre genre;
-                    ostringstream os(predicate);
-
-                    os << movie->getGenre();
-
-                    return os.str().find(predicate) != string::npos;
-                } },
-
-                { Filter::DURATION, [predicate](shared_ptr<Movie> movie)
-                {
-                    return movie->getDuration() == stoi(predicate);
-                } },
-
-                { Filter::RATING, [predicate](shared_ptr<Movie> movie)
-                {
-                    return movie->getRating() == stoi(predicate);
-                } },
-        };
-
-        MovieDatabase filtered;
-        std::copy_if(movieList.begin(),movieList.end(),
-                     back_inserter(filtered.movieList),
-                     filterMap.at(filter));
-        return filtered;
-    }
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /**
  * Overloading the input operator to read a input stream and for each line in

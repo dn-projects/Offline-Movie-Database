@@ -60,3 +60,57 @@ ostream& operator<<(ostream& os, MovieDatabase& movieDatabase)
     }
     return os;
 }
+
+MovieDatabase MovieDatabase::filterByPredicate(Filter filter, string predicate)
+{
+    const map<Filter, function<bool(shared_ptr<Movie>)> > filterMap =
+    {
+            { Filter::TITLE, [predicate](shared_ptr<Movie> movie)
+                             {
+                                 return movie->getTitle() == predicate;
+                             } },
+
+            { Filter::YEAR, [predicate](shared_ptr<Movie> movie)
+                             {
+                                 return movie->getYear() == stoi(predicate);
+                             } },
+
+            { Filter::CERTIFICATE, [predicate](shared_ptr<Movie> movie)
+                             {
+                                 Certificate certificate;
+                                 // char added before the predicate because input operator
+                                 // removes first character
+                                 stringstream ss('"' + predicate);
+
+                                 ss >> certificate;
+
+                                 return movie->getCertificate() == certificate;
+                             } },
+
+            { Filter::GENRE, [predicate](shared_ptr<Movie> movie)
+                             {
+                                 Genre genre;
+                                 ostringstream os(predicate);
+
+                                 os << movie->getGenre();
+
+                                 return os.str().find(predicate) != string::npos;
+                             } },
+
+            { Filter::DURATION, [predicate](shared_ptr<Movie> movie)
+                             {
+                                 return movie->getDuration() == stoi(predicate);
+                             } },
+
+            { Filter::RATING, [predicate](shared_ptr<Movie> movie)
+                             {
+                                 return movie->getRating() == stoi(predicate);
+                             } },
+    };
+
+    MovieDatabase filtered;
+    std::copy_if(movieList.begin(),movieList.end(),
+                 back_inserter(filtered.movieList),
+                 filterMap.at(filter));
+    return filtered;
+}
