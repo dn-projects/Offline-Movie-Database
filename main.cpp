@@ -74,19 +74,19 @@ std::shared_ptr<Movie> movie4(new Movie);
  cout << "Size after removing = " << movieDatabase.getMovieList().size() << endl << endl;
 
 
-
+MovieDatabase movieDatabase1;
     cout << "Testing adding single movie to database" << endl;
     cout << "Expected output - size = 250" << endl;
-    cout << "Size before add = " << movieDatabase.getMovieList().size() << endl;
-    movieDatabase.addMovieToDatabase(movie4);
-    cout << "Size after adding = " << movieDatabase.getMovieList().size() << endl << endl;
+    cout << "Size before add = " << movieDatabase1.getMovieList().size() << endl;
+    movieDatabase1.addMovieToDatabase(movie4);
+    cout << "Size after adding = " << movieDatabase1.getMovieList().size() << endl << endl;
     std::shared_ptr<Movie> movie5(new Movie);
     stringstream stream2("\"Casablanca\",1942,\"PG\",\"Drama/Romance/War\",102,0");
     stream2 >> *movie5;
     cout << "Expected output - size = 250" << endl;
-    cout << "Size before add = " << movieDatabase.getMovieList().size() << endl;
-    movieDatabase.addMovieToDatabase(movie5);
-    cout << "Size after adding = " << movieDatabase.getMovieList().size() << endl << endl;
+    cout << "Size before add = " << movieDatabase1.getMovieList().size() << endl;
+    movieDatabase1.addMovieToDatabase(movie5);
+    cout << "Size after adding = " << movieDatabase1.getMovieList().size() << endl << endl;
 
 
 

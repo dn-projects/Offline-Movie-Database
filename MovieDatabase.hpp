@@ -54,11 +54,16 @@ public:
         movieList.clear();
     }
 
-    inline void addMovieToDatabase(shared_ptr<Movie> movie)
+    inline void addMovieToDatabase(shared_ptr<Movie> movieToAdd)
     {
-        if(std::find(movieList.begin(), movieList.end(), movie) != movieList.end() == false)
+        if((find_if(movieList.begin(), movieList.end(),
+        [movieToAdd](const shared_ptr<Movie> movie)
         {
-            movieList.push_back(movie);
+            return *movie == *movieToAdd;
+        }))
+        == movieList.end())
+        {
+            movieList.push_back(movieToAdd);
         }
         else
         {
