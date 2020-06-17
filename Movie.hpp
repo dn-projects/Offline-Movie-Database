@@ -179,7 +179,17 @@ inline bool operator>(const Movie& movie1, const Movie& movie2)
  */
 inline bool operator==(const Movie& movie1, const Movie& movie2)
 {
-    return movie1.getTitle() == movie2.getTitle();
+    return movie1.getCertificate() == movie2.getCertificate() &&
+           movie1.getTitle() == movie2.getTitle() &&
+
+
+
+       title == movie.title && 
+          genre == movie.genre && 
+          year == movie.year && 
+             duration == movie.duration && 
+               rating == movie.rating;
+
 }
 
 /**

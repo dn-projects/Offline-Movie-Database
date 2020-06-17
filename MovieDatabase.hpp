@@ -20,11 +20,17 @@
 
 #include <memory>
 #include <vector>
+#include <map>
 
 #include "Movie.hpp"
 
 
 using namespace std;
+
+enum class Filter
+{
+    TITLE, YEAR, CERTIFICATE, GENRE, DURATION, RATING
+};
 
 class MovieDatabase
 {
@@ -43,10 +49,43 @@ public:
         return movieList;
     }
 
+    inline void deleteAllMovies()
+    {
+        movieList.clear();
+    }
 
     inline void addMovieToDatabase(shared_ptr<Movie> movie)
     {
-        movieList.push_back(movie);
+        if(std::find(movieList.begin(), movieList.end(), movie) != movieList.end() == false)
+        {
+            movieList.push_back(movie);
+        }
+        else
+        {
+            cout << "Movie already in database!" << endl;
+        }
+    }
+
+    inline void addMoviesToDatabase(MovieDatabase *movies)
+    {
+        for (shared_ptr<Movie> movie: movies->movieList)
+        {
+            addMovieToDatabase(movie);
+        }
+    }
+
+    void removeMovieFromDatabase(shared_ptr<Movie> movie)
+    {
+        movieList.erase(remove_if(movieList.begin(),
+         movieList.end(), [movie] (shared_ptr<Movie> mov) { return *movie == *mov; }));
+    }
+
+    void removeMoviesFromDatabase(MovieDatabase *movies)
+    {
+        for (shared_ptr<Movie> movie: movies->movieList)
+        {
+            removeMovieFromDatabase(movie);
+        }
     }
 
 
@@ -66,12 +105,14 @@ public:
     void sortByTitle(bool ascending)
     {
         ascending?
-        std::sort(movieList.begin(), movieList.end(), [](shared_ptr<Movie> movie1, shared_ptr<Movie> movie2) -> bool
+        std::sort(movieList.begin(), movieList.end(),
+         [](shared_ptr<Movie> movie1, shared_ptr<Movie> movie2) -> bool
         {
             return movie1->getTitle() < movie2->getTitle();
         })
         :
-        std::sort(movieList.begin(), movieList.end(), [](shared_ptr<Movie> movie1, shared_ptr<Movie> movie2) -> bool
+        std::sort(movieList.begin(), movieList.end(),
+         [](shared_ptr<Movie> movie1, shared_ptr<Movie> movie2) -> bool
         {
             return movie1->getTitle() > movie2->getTitle();
         });
@@ -80,12 +121,14 @@ public:
     void sortByTitleLength(bool ascending)
     {
         ascending?
-        std::sort(movieList.begin(), movieList.end(), [](shared_ptr<Movie> movie1, shared_ptr<Movie> movie2) -> bool
+        std::sort(movieList.begin(), movieList.end(),
+         [](shared_ptr<Movie> movie1, shared_ptr<Movie> movie2) -> bool
         {
             return movie1->getTitle().length() < movie2->getTitle().length();
         })
         :
-        std::sort(movieList.begin(), movieList.end(), [](shared_ptr<Movie> movie1, shared_ptr<Movie> movie2) -> bool
+        std::sort(movieList.begin(), movieList.end(),
+         [](shared_ptr<Movie> movie1, shared_ptr<Movie> movie2) -> bool
         {
             return movie1->getTitle().length() > movie2->getTitle().length();
         });
@@ -94,12 +137,14 @@ public:
     void sortByYear(bool ascending)
     {
         ascending?
-        std::sort(movieList.begin(), movieList.end(), [](shared_ptr<Movie> movie1, shared_ptr<Movie> movie2) -> bool
+        std::sort(movieList.begin(), movieList.end(),
+         [](shared_ptr<Movie> movie1, shared_ptr<Movie> movie2) -> bool
         {
             return *movie1 < *movie2;
         })
         :
-        std::sort(movieList.begin(), movieList.end(), [](shared_ptr<Movie> movie1, shared_ptr<Movie> movie2) -> bool
+        std::sort(movieList.begin(), movieList.end(),
+         [](shared_ptr<Movie> movie1, shared_ptr<Movie> movie2) -> bool
         {
             return *movie1 > *movie2;
         });
@@ -108,12 +153,14 @@ public:
     void sortByCertificate(bool ascending)
     {
         ascending?
-        std::sort(movieList.begin(), movieList.end(), [](shared_ptr<Movie> movie1, shared_ptr<Movie> movie2) -> bool
+        std::sort(movieList.begin(), movieList.end(),
+         [](shared_ptr<Movie> movie1, shared_ptr<Movie> movie2) -> bool
         {
             return movie1->getCertificate() < movie2->getCertificate();
         })
         :
-        std::sort(movieList.begin(), movieList.end(), [](shared_ptr<Movie> movie1, shared_ptr<Movie> movie2) -> bool
+        std::sort(movieList.begin(), movieList.end(),
+         [](shared_ptr<Movie> movie1, shared_ptr<Movie> movie2) -> bool
         {
             return movie1->getCertificate() > movie2->getCertificate();
         });
@@ -139,12 +186,14 @@ public:
     void sortByDuration(bool ascending)
     {
         ascending?
-        std::sort(movieList.begin(), movieList.end(), [](shared_ptr<Movie> movie1, shared_ptr<Movie> movie2) -> bool
+        std::sort(movieList.begin(), movieList.end(),
+        [](shared_ptr<Movie> movie1, shared_ptr<Movie> movie2) -> bool
         {
             return movie1->getDuration() < movie2->getDuration();
         })
                  :
-        std::sort(movieList.begin(), movieList.end(), [](shared_ptr<Movie> movie1, shared_ptr<Movie> movie2) -> bool
+        std::sort(movieList.begin(), movieList.end(),
+        [](shared_ptr<Movie> movie1, shared_ptr<Movie> movie2) -> bool
         {
             return movie1->getDuration() > movie2->getDuration();
         });
@@ -153,12 +202,14 @@ public:
     void sortByRating(bool ascending)
     {
         ascending?
-        std::sort(movieList.begin(), movieList.end(), [](shared_ptr<Movie> movie1, shared_ptr<Movie> movie2) -> bool
+        std::sort(movieList.begin(), movieList.end(),
+        [](shared_ptr<Movie> movie1, shared_ptr<Movie> movie2) -> bool
         {
             return movie1->getRating() < movie2->getRating();
         })
                  :
-        std::sort(movieList.begin(), movieList.end(), [](shared_ptr<Movie> movie1, shared_ptr<Movie> movie2) -> bool
+        std::sort(movieList.begin(), movieList.end(),
+        [](shared_ptr<Movie> movie1, shared_ptr<Movie> movie2) -> bool
         {
             return movie1->getRating() > movie2->getRating();
         });
@@ -166,90 +217,56 @@ public:
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    void filterTitleByPredicate(string predicate)
+    MovieDatabase filterByPredicate(Filter filter, string predicate)
     {
-        string str1 = predicate;
-        string str2;
-
-        remove_if(movieList.begin(), movieList.end(), [&](shared_ptr<Movie> movie)
+        const map<Filter, function<bool(shared_ptr<Movie>)> > filterMap =
         {
-            str2 = movie->getTitle();
-            return movie->getTitle().find(predicate) == string::npos;
-        });
-    }
+                { Filter::TITLE, [predicate](shared_ptr<Movie> movie)
+                {
+                    return movie->getTitle() == predicate;
+                } },
 
+                { Filter::YEAR, [predicate](shared_ptr<Movie> movie)
+                {
+                    return movie->getYear() == stoi(predicate);
+                } },
 
+                { Filter::CERTIFICATE, [predicate](shared_ptr<Movie> movie)
+                {
+                    Certificate certificate;
+                    stringstream ss('"' + predicate);
 
-//    void filterGenreByPredicate(string genreString)
-//    {
-//        //TODO std::next() to get nth term
-//        Genre genre;
-//        string cmpString;
-//
-//        istringstream(genreString) >> genre;
-//
-//        ostringstream os;
-//
-//        os << getGenre();
-//
-//        cmpString = os.str();
-//
-//        if(cmpString.find(genre) != string::npos)
-//        {
-//            return false;
-//        }
-//        return true;
-//    }
+                    ss >> certificate;
 
-    void filterGenreByPredicate(string genreString)
-    {
-        Genre genre;
-        string cmpString;
+                    return movie->getCertificate() == certificate;
+                } },
 
-        remove_if(movieList.begin(), movieList.end(), [&](shared_ptr<Movie> movie)
-        {
-            istringstream(genreString) >> genre;
+                { Filter::GENRE, [predicate](shared_ptr<Movie> movie)
+                {
+                    Genre genre;
+                    ostringstream os(predicate);
 
-            ostringstream os;
+                    os << movie->getGenre();
 
-            os << movie->getGenre();
+                    return os.str().find(predicate) != string::npos;
+                } },
 
-            cmpString = os.str();
+                { Filter::DURATION, [predicate](shared_ptr<Movie> movie)
+                {
+                    return movie->getDuration() == stoi(predicate);
+                } },
 
-            return cmpString.find(genreString) == string::npos;
-        });
+                { Filter::RATING, [predicate](shared_ptr<Movie> movie)
+                {
+                    return movie->getRating() == stoi(predicate);
+                } },
+        };
 
-
-//        for (shared_ptr<Movie> movie : movieList)
-//        {
-//             ostringstream os;
-//            os << movie->getGenre();
-//
-//            str = os.str();
-//
-//            if(str.find(genre) != string::npos)
-//            {
-//                cout << *movie << endl;
-//            }
-//        }
+        MovieDatabase filtered;
+        std::copy_if(movieList.begin(),movieList.end(),
+                     back_inserter(filtered.movieList),
+                     filterMap.at(filter));
+        return filtered;
     }
 };
 

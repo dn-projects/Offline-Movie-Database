@@ -20,6 +20,42 @@
 
 using namespace std;
 
+// Map used to store the string to Certificate conversion
+// with strings as keys and the Certificates as values
+static const map<string, Certificate> stringToCertificateMap =
+{
+        {"NOT RATED", Certificate::NOT_RATED},
+        {"UNRATED",   Certificate::UNRATED},
+        {"G",         Certificate::G},
+        {"PG",        Certificate::PG},
+        {"PG-13",     Certificate::PG_13},
+        {"R",         Certificate::R},
+        {"APPROVED",  Certificate::APPROVED},
+        {"PASSED",    Certificate::PASSED},
+        {"N/A",       Certificate::N_A},
+        {"TV-14",     Certificate::TV_14},
+        {"M",         Certificate::M},
+        {"X",         Certificate::X},
+};
+
+// Map used to store the Certificate to string conversion
+// with Certificates as keys and the strings as values
+static const map<Certificate, string> certificateToStringMap =
+{
+        {Certificate::NOT_RATED, "NOT RATED"},
+        {Certificate::UNRATED,   "UNRATED"},
+        {Certificate::G,         "G"},
+        {Certificate::PG,        "PG"},
+        {Certificate::PG_13,     "PG-13"},
+        {Certificate::R,         "R"},
+        {Certificate::APPROVED,  "APPROVED"},
+        {Certificate::PASSED,    "PASSED"},
+        {Certificate::N_A,       "N/A"},
+        {Certificate::TV_14,     "TV-14"},
+        {Certificate::M,         "M"},
+        {Certificate::X,         "X"},
+};
+
 /**
  * Function body for overloaded input operator for input stream, Movie
  */
@@ -65,24 +101,6 @@ ostream& operator<<(ostream& os, const Movie& movie)
  */
 istream& operator>>(istream& is, Certificate& certificate)
 {
-    // Map used to store the string to Certificate conversion
-    // with strings as keys and the Certificates as values
-    const map<string, Certificate> stringToCertificateMap =
-    {
-        {"NOT RATED", Certificate::NOT_RATED},
-        {"UNRATED",   Certificate::UNRATED},
-        {"G",         Certificate::G},
-        {"PG",        Certificate::PG},
-        {"PG-13",     Certificate::PG_13},
-        {"R",         Certificate::R},
-        {"APPROVED",  Certificate::APPROVED},
-        {"PASSED",    Certificate::PASSED},
-        {"N/A",       Certificate::N_A},
-        {"TV-14",     Certificate::TV_14},
-        {"M",         Certificate::M},
-        {"X",         Certificate::X},
-    };
-
     char c;
     string input;
 
@@ -106,24 +124,6 @@ istream& operator>>(istream& is, Certificate& certificate)
  */
 ostream& operator<<(ostream& os, const Certificate& certificate)
 {
-    // Map used to store the Certificate to string conversion
-    // with Certificates as keys and the strings as values
-    const map<Certificate, string> certificateToStringMap =
-    {
-        {Certificate::NOT_RATED, "NOT RATED"},
-        {Certificate::UNRATED,   "UNRATED"},
-        {Certificate::G,         "G"},
-        {Certificate::PG,        "PG"},
-        {Certificate::PG_13,     "PG-13"},
-        {Certificate::R,         "R"},
-        {Certificate::APPROVED,  "APPROVED"},
-        {Certificate::PASSED,    "PASSED"},
-        {Certificate::N_A,       "N/A"},
-        {Certificate::TV_14,     "TV-14"},
-        {Certificate::M,         "M"},
-        {Certificate::X,         "X"},
-    };
-
     return os << certificateToStringMap.at(certificate);
 }
 

@@ -16,7 +16,6 @@
  Date        : Wednesday 6th May 2020
 *******************************************************************************/
 
-#include <string>
 #include <functional>
 #include <iostream>
 #include <fstream>
@@ -27,13 +26,10 @@ using namespace std;
 
 //TODO comment []
 //TODO test harness []
-
-
-//TODO filter/sort method []
-//TODO pointers []
-//TODO garbage collection []
-//TODO bit fields [x]
 //TODO check things are const []
+//TODO maps into static []
+//TODO rename variables []
+//TODO move things out of header file []
 
 int main()
 {
@@ -53,35 +49,65 @@ int main()
 
     //  2. Displaying all Movies in chronological order
     cout << "FILMS IN CHRONOLOGICAL ORDER:" << endl;
-    //cout << movieDatabase;
+    cout << movieDatabase;
+
+
+
+
+
+
+
+
+
+
+
+
+
+//removing movie 
+std::shared_ptr<Movie> movie4(new Movie);
+ stringstream stream4("\"Casablanca\",1942,\"PG\",\"Drama/Romance/War\",102,0");
+ stream4 >> *movie4;
+ cout << "Testing removing single movie from database" << endl;
+ cout << "Expected output - size = 249" << endl;
+ cout << "Size before removing = " << movieDatabase.getMovieList().size() << endl;
+ movieDatabase.removeMovieFromDatabase(movie4);
+ cout << "Size after removing = " << movieDatabase.getMovieList().size() << endl << endl;
+
+
+
+    cout << "Testing adding single movie to database" << endl;
+    cout << "Expected output - size = 250" << endl;
+    cout << "Size before add = " << movieDatabase.getMovieList().size() << endl;
+    movieDatabase.addMovieToDatabase(movie4);
+    cout << "Size after adding = " << movieDatabase.getMovieList().size() << endl << endl;
+    std::shared_ptr<Movie> movie5(new Movie);
+    stringstream stream2("\"Casablanca\",1942,\"PG\",\"Drama/Romance/War\",102,0");
+    stream2 >> *movie5;
+    cout << "Expected output - size = 250" << endl;
+    cout << "Size before add = " << movieDatabase.getMovieList().size() << endl;
+    movieDatabase.addMovieToDatabase(movie5);
+    cout << "Size after adding = " << movieDatabase.getMovieList().size() << endl << endl;
+
+
+
+
+
+
 
     //  3. Displaying the third longest 'Film-Noir'
     cout << "\nTHIRD LONGEST FILM-NOIR:" << endl;
-
-
-
-    //cout << movieDatabase << endl;
-    //movieDatabase.filterTitleByPredicate("Ikiru");
-    //movieDatabase.filterGenreByPredicate("Film-Noir");
-    //cout << movieDatabase << endl;
-    //cout << *movieDatabase.movieByIndex(1);
-
-
-    //movieDatabase.filterGenreByPredicate(Genre().Film_Noir);
-    //cout << movieDatabase;
-    //movieDatabase.filterGenreByPredicate("Film-Noir");
-    //cout << movieDatabase;
-
-
+    movieDatabase.sortByDuration(false);
+    cout << * movieDatabase.filterByPredicate(Filter::GENRE ,"Film-Noir")[2] << endl;
 
     //  4. Displaying the eight most recent UNRATED film
     cout << "\nEIGHT MOST RECENT UNRATED FILM:" << endl;
-
+    movieDatabase.sortByYear(false);
+    cout << * movieDatabase.filterByPredicate(Filter::CERTIFICATE, "UNRATED")[7] << endl;
 
     //  5. Displaying the film with the longest title
     cout << "\nFILM WITH LONGEST TITLE:" << endl;
-    //movieDatabase.sortByTitleLength(false);
-    //cout << * movieDatabase[0] << endl;
+    movieDatabase.sortByTitleLength(false);
+    cout << * movieDatabase[0] << endl;
 
     // Test harness for Movie class
     //RunMovieTestHarness();
