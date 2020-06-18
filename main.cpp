@@ -49,7 +49,7 @@ int main()
 
     //  2. Displaying all Movies in chronological order
     cout << "FILMS IN CHRONOLOGICAL ORDER:" << endl;
-    cout << movieDatabase;
+    //cout << movieDatabase;
 
 
 
@@ -64,29 +64,29 @@ int main()
 
 
 //removing movie 
-std::shared_ptr<Movie> movie4(new Movie);
- stringstream stream4("\"Casablanca\",1942,\"PG\",\"Drama/Romance/War\",102,0");
- stream4 >> *movie4;
- cout << "Testing removing single movie from database" << endl;
- cout << "Expected output - size = 249" << endl;
- cout << "Size before removing = " << movieDatabase.getMovieList().size() << endl;
- movieDatabase.removeMovieFromDatabase(movie4);
- cout << "Size after removing = " << movieDatabase.getMovieList().size() << endl << endl;
-
-
-MovieDatabase movieDatabase1;
-    cout << "Testing adding single movie to database" << endl;
-    cout << "Expected output - size = 250" << endl;
-    cout << "Size before add = " << movieDatabase1.getMovieList().size() << endl;
-    movieDatabase1.addMovieToDatabase(movie4);
-    cout << "Size after adding = " << movieDatabase1.getMovieList().size() << endl << endl;
-    std::shared_ptr<Movie> movie5(new Movie);
-    stringstream stream2("\"Casablanca\",1942,\"PG\",\"Drama/Romance/War\",102,0");
-    stream2 >> *movie5;
-    cout << "Expected output - size = 250" << endl;
-    cout << "Size before add = " << movieDatabase1.getMovieList().size() << endl;
-    movieDatabase1.addMovieToDatabase(movie5);
-    cout << "Size after adding = " << movieDatabase1.getMovieList().size() << endl << endl;
+//std::shared_ptr<Movie> movie4(new Movie);
+// stringstream stream4("\"Casablanca\",1942,\"PG\",\"Drama/Romance/War\",102,0");
+// stream4 >> *movie4;
+// cout << "Testing removing single movie from database" << endl;
+// cout << "Expected output - size = 249" << endl;
+// cout << "Size before removing = " << movieDatabase.getMovieList().size() << endl;
+// movieDatabase.removeMovieFromDatabase(movie4);
+// cout << "Size after removing = " << movieDatabase.getMovieList().size() << endl << endl;
+//
+//
+//MovieDatabase movieDatabase1;
+//    cout << "Testing adding single movie to database" << endl;
+//    cout << "Expected output - size = 250" << endl;
+//    cout << "Size before add = " << movieDatabase1.getMovieList().size() << endl;
+//    movieDatabase1.addMovieToDatabase(movie4);
+//    cout << "Size after adding = " << movieDatabase1.getMovieList().size() << endl << endl;
+//    std::shared_ptr<Movie> movie5(new Movie);
+//    stringstream stream2("\"Casablanca\",1942,\"PG\",\"Drama/Romance/War\",102,0");
+//    stream2 >> *movie5;
+//    cout << "Expected output - size = 250" << endl;
+//    cout << "Size before add = " << movieDatabase1.getMovieList().size() << endl;
+//    movieDatabase1.addMovieToDatabase(movie5);
+//    cout << "Size after adding = " << movieDatabase1.getMovieList().size() << endl << endl;
 
 
 
@@ -96,24 +96,24 @@ MovieDatabase movieDatabase1;
 
     //  3. Displaying the third longest 'Film-Noir'
     cout << "\nTHIRD LONGEST FILM-NOIR:" << endl;
-    movieDatabase.sortByDuration(false);
-    cout << * movieDatabase.filterByPredicate(Filter::GENRE ,"Film-Noir")[2] << endl;
+    //movieDatabase.sortByDuration(false);
+    //cout << * movieDatabase.filterByPredicate(Filter::GENRE ,"Film-Noir")[2] << endl;
 
     //  4. Displaying the eight most recent UNRATED film
     cout << "\nEIGHT MOST RECENT UNRATED FILM:" << endl;
-    movieDatabase.sortByYear(false);
-    cout << * movieDatabase.filterByPredicate(Filter::CERTIFICATE, "UNRATED")[7] << endl;
+    //movieDatabase.sortByYear(false);
+    //cout << * movieDatabase.filterByPredicate(Filter::CERTIFICATE, "UNRATED")[7] << endl;
 
     //  5. Displaying the film with the longest title
     cout << "\nFILM WITH LONGEST TITLE:" << endl;
-    movieDatabase.sortByTitleLength(false);
-    cout << * movieDatabase[0] << endl;
+    //movieDatabase.sortByTitleLength(false);
+    //cout << * movieDatabase[0] << endl;
 
     // Test harness for Movie class
     //RunMovieTestHarness();
 
     // Test harness for MovieDatabase class
-    //RunMovieDatabaseTestHarness();
+    RunMovieDatabaseTestHarness();
 
     return 0;
 }

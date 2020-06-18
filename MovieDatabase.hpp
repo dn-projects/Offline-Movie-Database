@@ -13,6 +13,12 @@
  Author      : Dovydas Novikovas
 
  Date        : Wednesday 6th May 2020
+
+ Notes       : Method 'sortByGenre' was not implemented because it does not
+               seem practical sorting MovieDatabase by genres as it will not
+               sort the Movies in a logical order. Considering a Movie can have
+               one or multiple genres the sorting order will be too ambiguous
+               and will not provide much clarity to the sorting order.
 *******************************************************************************/
 
 #ifndef CPP_COURSEWORK_MOVIEDATABASE_HPP
@@ -23,7 +29,6 @@
 #include <map>
 
 #include "Movie.hpp"
-
 
 using namespace std;
 
@@ -43,7 +48,6 @@ public:
     explicit MovieDatabase()
     = default;
 
-
     inline vector<shared_ptr<Movie> > getMovieList() const
     {
         return movieList;
@@ -54,6 +58,10 @@ public:
         movieList.clear();
     }
 
+    /**
+     *
+     * @param movieToAdd
+     */
     inline void addMovieToDatabase(shared_ptr<Movie> movieToAdd)
     {
         if((find_if(movieList.begin(), movieList.end(),
@@ -71,6 +79,10 @@ public:
         }
     }
 
+    /**
+     *
+     * @param movies
+     */
     inline void addMoviesToDatabase(MovieDatabase *movies)
     {
         for (shared_ptr<Movie> movie: movies->movieList)
@@ -79,12 +91,20 @@ public:
         }
     }
 
+    /**
+     *
+     * @param movie
+     */
     void removeMovieFromDatabase(shared_ptr<Movie> movie)
     {
         movieList.erase(remove_if(movieList.begin(),
          movieList.end(), [movie] (shared_ptr<Movie> mov) { return *movie == *mov; }));
     }
 
+    /**
+     *
+     * @param movies
+     */
     void removeMoviesFromDatabase(MovieDatabase *movies)
     {
         for (shared_ptr<Movie> movie: movies->movieList)
@@ -93,7 +113,11 @@ public:
         }
     }
 
-
+    /**
+     *
+     * @param index
+     * @return
+     */
     inline shared_ptr<Movie> operator[](const int &index)
     {
         return movieList[index];
@@ -107,119 +131,48 @@ public:
         sortByYear(true);
     }
 
-    void sortByTitle(bool ascending)
-    {
-        ascending?
-        std::sort(movieList.begin(), movieList.end(),
-         [](shared_ptr<Movie> movie1, shared_ptr<Movie> movie2) -> bool
-        {
-            return movie1->getTitle() < movie2->getTitle();
-        })
-        :
-        std::sort(movieList.begin(), movieList.end(),
-         [](shared_ptr<Movie> movie1, shared_ptr<Movie> movie2) -> bool
-        {
-            return movie1->getTitle() > movie2->getTitle();
-        });
-    }
+    /**
+     *
+     * @param ascending
+     */
+    void sortByTitle(bool ascending);
 
-    void sortByTitleLength(bool ascending)
-    {
-        ascending?
-        std::sort(movieList.begin(), movieList.end(),
-         [](shared_ptr<Movie> movie1, shared_ptr<Movie> movie2) -> bool
-        {
-            return movie1->getTitle().length() < movie2->getTitle().length();
-        })
-        :
-        std::sort(movieList.begin(), movieList.end(),
-         [](shared_ptr<Movie> movie1, shared_ptr<Movie> movie2) -> bool
-        {
-            return movie1->getTitle().length() > movie2->getTitle().length();
-        });
-    }
+    /**
+     *
+     * @param ascending
+     */
+    void sortByTitleLength(bool ascending);
 
-    void sortByYear(bool ascending)
-    {
-        ascending?
-        std::sort(movieList.begin(), movieList.end(),
-         [](shared_ptr<Movie> movie1, shared_ptr<Movie> movie2) -> bool
-        {
-            return *movie1 < *movie2;
-        })
-        :
-        std::sort(movieList.begin(), movieList.end(),
-         [](shared_ptr<Movie> movie1, shared_ptr<Movie> movie2) -> bool
-        {
-            return *movie1 > *movie2;
-        });
-    }
+    /**
+     *
+     * @param ascending
+     */
+    void sortByYear(bool ascending);
 
-    void sortByCertificate(bool ascending)
-    {
-        ascending?
-        std::sort(movieList.begin(), movieList.end(),
-         [](shared_ptr<Movie> movie1, shared_ptr<Movie> movie2) -> bool
-        {
-            return movie1->getCertificate() < movie2->getCertificate();
-        })
-        :
-        std::sort(movieList.begin(), movieList.end(),
-         [](shared_ptr<Movie> movie1, shared_ptr<Movie> movie2) -> bool
-        {
-            return movie1->getCertificate() > movie2->getCertificate();
-        });
-    }
+    /**
+     *
+     * @param ascending
+     */
+    void sortByCertificate(bool ascending);
 
-    //TODO explain why genre sort not implemented
-    /*
-    void sortByGenre(bool ascending)
-    {
-        ascending?
-        std::sort(movieList.begin(), movieList.end(), [](shared_ptr<Movie> movie1, shared_ptr<Movie> movie2) -> bool
-        {
-            return movie1->getGenre() < movie2->getGenre();
-        })
-        :
-        std::sort(movieList.begin(), movieList.end(), [](shared_ptr<Movie> movie1, shared_ptr<Movie> movie2) -> bool
-        {
-            return movie1->getGenre() > movie2->getGenre();
-        });
-    }
-    */
+    /**
+     *
+     * @param ascending
+     */
+    void sortByDuration(bool ascending);
 
-    void sortByDuration(bool ascending)
-    {
-        ascending?
-        std::sort(movieList.begin(), movieList.end(),
-        [](shared_ptr<Movie> movie1, shared_ptr<Movie> movie2) -> bool
-        {
-            return movie1->getDuration() < movie2->getDuration();
-        })
-                 :
-        std::sort(movieList.begin(), movieList.end(),
-        [](shared_ptr<Movie> movie1, shared_ptr<Movie> movie2) -> bool
-        {
-            return movie1->getDuration() > movie2->getDuration();
-        });
-    }
+    /**
+     *
+     * @param ascending
+     */
+    void sortByRating(bool ascending);
 
-    void sortByRating(bool ascending)
-    {
-        ascending?
-        std::sort(movieList.begin(), movieList.end(),
-        [](shared_ptr<Movie> movie1, shared_ptr<Movie> movie2) -> bool
-        {
-            return movie1->getRating() < movie2->getRating();
-        })
-                 :
-        std::sort(movieList.begin(), movieList.end(),
-        [](shared_ptr<Movie> movie1, shared_ptr<Movie> movie2) -> bool
-        {
-            return movie1->getRating() > movie2->getRating();
-        });
-    }
-
+    /**
+     *
+     * @param filter
+     * @param predicate
+     * @return
+     */
     MovieDatabase filterByPredicate(Filter filter, string predicate);
 
 };
@@ -253,6 +206,49 @@ union RunMovieDatabaseTestHarness
     RunMovieDatabaseTestHarness()
     {
         cout << "---------------TESTING MOVIEDATABASE CLASS-----------------\n";
+
+        cout << "MOVIE 1:\n";
+        Movie movie1;
+        stringstream ssi(R"("The Godfather: Part II",1974,"R","Crime/Drama",202,0")");
+        ssi >> movie1;
+        cout << movie1 << endl;
+
+        cout << "MOVIE 2:\n";
+        Movie movie2;
+        stringstream ssii(R"("Sharknado",2013,"TV-14","Horror",86,0")");
+        ssii >> movie2;
+        cout << movie2 << endl;
+
+        cout << "MOVIE 3:\n";
+        Movie movie3;
+        stringstream ssiii(R"("Network",1976,"R","Drama/Romance",121,0")");
+        ssiii >> movie3;
+        cout << movie3 << endl;
+
+        cout << "MOVIE 4:\n";
+        Movie movie4;
+        stringstream ssiv(R"("The Help",2011,"PG-13","Drama",146,0")");
+        ssiv >> movie4;
+        cout << movie4 << endl;
+
+        cout << "MOVIE 5:\n";
+        Movie movie5;
+        stringstream ssv(R"("3 Idiots",2009,"PG-13","Comedy/Drama",170,0")");
+        ssv >> movie5;
+        cout << movie5 << endl;
+        cout << "-----------------------------------------------------------\n";
+
+        cout << "MOVIEDATABASE 1:\n";
+        MovieDatabase movieDatabase1;
+        cout << movieDatabase1;
+
+        cout << "MOVIEDATABASE 2:\n";
+        MovieDatabase movieDatabase2;
+        cout << movieDatabase2;
+        cout << "-----------------------------------------------------------\n";
+
+        //shared_ptr<Movie> mov(movie1);
+        //movieDatabase1.addMovieToDatabase(mov);
     }
 };
 

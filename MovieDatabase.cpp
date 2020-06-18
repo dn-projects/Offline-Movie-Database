@@ -54,11 +54,114 @@ istream& operator>>(istream& is, MovieDatabase& movieDatabase)
  */
 ostream& operator<<(ostream& os, MovieDatabase& movieDatabase)
 {
-    for (shared_ptr<Movie> movie: movieDatabase.getMovieList())
+    if(movieDatabase.getMovieList().size() == 0)
     {
-        os << *movie << endl;
+        cout << "Database empty!" << endl;
+    }
+    else
+    {
+        for (shared_ptr<Movie> movie: movieDatabase.getMovieList())
+        {
+            os << *movie << endl;
+        }
     }
     return os;
+}
+
+void MovieDatabase::sortByTitle(bool ascending)
+{
+    ascending?
+    std::sort(movieList.begin(), movieList.end(),
+    [](shared_ptr<Movie> movie1, shared_ptr<Movie> movie2) -> bool
+    {
+        return movie1->getTitle() < movie2->getTitle();
+    })
+    :
+    std::sort(movieList.begin(), movieList.end(),
+    [](shared_ptr<Movie> movie1, shared_ptr<Movie> movie2) -> bool
+    {
+        return movie1->getTitle() > movie2->getTitle();
+    });
+}
+
+void MovieDatabase::sortByTitleLength(bool ascending)
+{
+    ascending?
+    std::sort(movieList.begin(), movieList.end(),
+    [](shared_ptr<Movie> movie1, shared_ptr<Movie> movie2) -> bool
+    {
+        return movie1->getTitle().length() < movie2->getTitle().length();
+    })
+    :
+    std::sort(movieList.begin(), movieList.end(),
+    [](shared_ptr<Movie> movie1, shared_ptr<Movie> movie2) -> bool
+    {
+        return movie1->getTitle().length() > movie2->getTitle().length();
+    });
+}
+
+void MovieDatabase::sortByYear(bool ascending)
+{
+    ascending?
+    std::sort(movieList.begin(), movieList.end(),
+    [](shared_ptr<Movie> movie1, shared_ptr<Movie> movie2) -> bool
+    {
+        return *movie1 < *movie2;
+    })
+    :
+    std::sort(movieList.begin(), movieList.end(),
+    [](shared_ptr<Movie> movie1, shared_ptr<Movie> movie2) -> bool
+    {
+        return *movie1 > *movie2;
+    });
+}
+
+void MovieDatabase::sortByCertificate(bool ascending)
+{
+    ascending?
+    std::sort(movieList.begin(), movieList.end(),
+    [](shared_ptr<Movie> movie1, shared_ptr<Movie> movie2) -> bool
+    {
+        return movie1->getCertificate() < movie2->getCertificate();
+    })
+    :
+    std::sort(movieList.begin(), movieList.end(),
+    [](shared_ptr<Movie> movie1, shared_ptr<Movie> movie2) -> bool
+    {
+        return movie1->getCertificate() > movie2->getCertificate();
+    });
+}
+
+void MovieDatabase::sortByDuration(bool ascending)
+{
+    ascending?
+    std::sort(movieList.begin(), movieList.end(),
+    [](shared_ptr<Movie> movie1, shared_ptr<Movie> movie2) -> bool
+    {
+        return movie1->getDuration() < movie2->getDuration();
+    })
+    :
+    std::sort(movieList.begin(), movieList.end(),
+    [](shared_ptr<Movie> movie1, shared_ptr<Movie> movie2) -> bool
+    {
+        return movie1->getDuration() > movie2->getDuration();
+    });
+}
+
+void MovieDatabase::sortByRating(bool ascending)
+{
+    ascending?
+    std::sort(movieList.begin(), movieList.end(),
+    [](shared_ptr<Movie> movie1, shared_ptr<Movie> movie2) -> bool
+    {
+        return movie1->getRating() < movie2->getRating();
+    })
+    :
+    std::sort(movieList.begin(), movieList.end(),
+    [](shared_ptr<Movie> movie1, shared_ptr<Movie> movie2) -> bool
+    {
+        return movie1->getRating() > movie2->getRating();
+    });
 }
 
 MovieDatabase MovieDatabase::filterByPredicate(Filter filter, string predicate)
@@ -66,51 +169,52 @@ MovieDatabase MovieDatabase::filterByPredicate(Filter filter, string predicate)
     const map<Filter, function<bool(shared_ptr<Movie>)> > filterMap =
     {
             { Filter::TITLE, [predicate](shared_ptr<Movie> movie)
-                             {
-                                 return movie->getTitle() == predicate;
-                             } },
+            {
+                return movie->getTitle() == predicate;
+            } },
 
             { Filter::YEAR, [predicate](shared_ptr<Movie> movie)
-                             {
-                                 return movie->getYear() == stoi(predicate);
-                             } },
+            {
+                return movie->getYear() == stoi(predicate);
+            } },
 
             { Filter::CERTIFICATE, [predicate](shared_ptr<Movie> movie)
-                             {
-                                 Certificate certificate;
-                                 // char added before the predicate because input operator
-                                 // removes first character
-                                 stringstream ss('"' + predicate);
+            {
+                Certificate certificate;
+                // char added before the predicate because input operator
+                // removes first character
+                stringstream ss('"' + predicate);
 
-                                 ss >> certificate;
+                ss >> certificate;
 
-                                 return movie->getCertificate() == certificate;
-                             } },
+                return movie->getCertificate() == certificate;
+            } },
 
             { Filter::GENRE, [predicate](shared_ptr<Movie> movie)
-                             {
-                                 Genre genre;
-                                 ostringstream os(predicate);
+            {
+                Genre genre;
+                ostringstream os(predicate);
 
-                                 os << movie->getGenre();
+                os << movie->getGenre();
 
-                                 return os.str().find(predicate) != string::npos;
-                             } },
+                return os.str().find(predicate) != string::npos;
+            } },
 
             { Filter::DURATION, [predicate](shared_ptr<Movie> movie)
-                             {
-                                 return movie->getDuration() == stoi(predicate);
-                             } },
+            {
+                return movie->getDuration() == stoi(predicate);
+            } },
 
             { Filter::RATING, [predicate](shared_ptr<Movie> movie)
-                             {
-                                 return movie->getRating() == stoi(predicate);
-                             } },
+            {
+                return movie->getRating() == stoi(predicate);
+            } },
     };
 
     MovieDatabase filtered;
-    std::copy_if(movieList.begin(),movieList.end(),
-                 back_inserter(filtered.movieList),
-                 filterMap.at(filter));
+
+    copy_if(movieList.begin(),movieList.end(),
+            back_inserter(filtered.movieList), filterMap.at(filter));
+
     return filtered;
 }
