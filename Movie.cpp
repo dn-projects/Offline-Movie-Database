@@ -3,25 +3,27 @@
 
  Include     : Movie.hpp
 
- Description : Contains the implementations for the overloaded input and output
-               operators for class Movie.
+ Description : Contains two maps that help with conversions between strings and
+               certificates and also the implementations for the overloaded
+               input and output operators for class Movie, enum class
+               Certificate and struct Genre.
 
  Author      : Dovydas Novikovas
 
  Date        : Wednesday 6th May 2020
 *******************************************************************************/
 
-#include <sstream>
 #include <iostream>
 #include <iomanip>
 #include <map>
 #include "Movie.hpp"
 
-
 using namespace std;
 
-// Map used to store the string to Certificate conversion
-// with strings as keys and the Certificates as values
+/**
+    Map used to store the string to Certificate conversion with strings as
+    keys and the Certificates as values
+*/
 static const map<string, Certificate> stringToCertificateMap =
 {
         {"NOT RATED", Certificate::NOT_RATED},
@@ -38,8 +40,10 @@ static const map<string, Certificate> stringToCertificateMap =
         {"X",         Certificate::X},
 };
 
-// Map used to store the Certificate to string conversion
-// with Certificates as keys and the strings as values
+/**
+    Map used to store the Certificate to string conversion
+    with Certificates as keys and the strings as values
+*/
 static const map<Certificate, string> certificateToStringMap =
 {
         {Certificate::NOT_RATED, "NOT RATED"},
@@ -57,8 +61,8 @@ static const map<Certificate, string> certificateToStringMap =
 };
 
 /**
- * Function body for overloaded input operator for input stream, Movie
- */
+    Function body for overloaded input operator for input stream, Movie
+*/
 istream& operator>>(istream& is, Movie& movie)
 {
     char c;
@@ -84,7 +88,7 @@ istream& operator>>(istream& is, Movie& movie)
 }
 
 /**
- * Function body for overloaded output operator for output stream, Movie
+    Function body for overloaded output operator for output stream, Movie
  */
 ostream& operator<<(ostream& os, const Movie& movie)
 {
@@ -97,7 +101,7 @@ ostream& operator<<(ostream& os, const Movie& movie)
 }
 
 /**
- * Function body for overloaded input operator for input stream, Certificate
+    Function body for overloaded input operator for input stream, Certificate
  */
 istream& operator>>(istream& is, Certificate& certificate)
 {
@@ -120,7 +124,7 @@ istream& operator>>(istream& is, Certificate& certificate)
 }
 
 /**
- * Function body for overloaded output operator for output stream, Certificate
+    Function body for overloaded output operator for output stream, Certificate
  */
 ostream& operator<<(ostream& os, const Certificate& certificate)
 {
@@ -128,7 +132,7 @@ ostream& operator<<(ostream& os, const Certificate& certificate)
 }
 
 /**
- * Function body for overloaded input operator for input stream, Genre
+    Function body for overloaded input operator for input stream, Genre
  */
 istream& operator>>(istream& is, Genre& genre)
 {
@@ -177,7 +181,7 @@ istream& operator>>(istream& is, Genre& genre)
 }
 
 /**
- * Function body for overloaded output operator for output stream, Genre
+    Function body for overloaded output operator for output stream, Genre
  */
 ostream& operator<<(ostream& os, const Genre& genre)
 {

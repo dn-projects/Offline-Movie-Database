@@ -3,24 +3,22 @@
 
  Include     : MovieDatabase.hpp, Movie.hpp
 
- Description : Contains the implementations for the overloaded input and output
-               operators for class MovieDatabase.
+ Description : Contains the implementations for the functions, input operator
+               and output operator for MovieDatabase.
 
  Author      : Dovydas Novikovas
 
  Date        : Wednesday 6th May 2020
 *******************************************************************************/
 
-//#include <iterator>
 #include <iostream>
-#include <sstream>
 #include "MovieDatabase.hpp"
 #include "Movie.hpp"
 
 using namespace std;
 
 /**
- * Function body for overloaded input operator for input stream, MovieDatabase
+    Function body for overloaded input operator for input stream, MovieDatabase
  */
 istream& operator>>(istream& is, MovieDatabase& movieDatabase)
 {
@@ -50,7 +48,7 @@ istream& operator>>(istream& is, MovieDatabase& movieDatabase)
 }
 
 /**
- * Function body for overloaded output operator for output stream, MovieDatabase
+    Function body for overloaded output operator for output stream, MovieDatabase
  */
 ostream& operator<<(ostream& os, MovieDatabase& movieDatabase)
 {
@@ -68,6 +66,9 @@ ostream& operator<<(ostream& os, MovieDatabase& movieDatabase)
     return os;
 }
 
+/**
+    Function body for sortByTitle() method
+*/
 void MovieDatabase::sortByTitle(bool ascending)
 {
     ascending?
@@ -84,6 +85,9 @@ void MovieDatabase::sortByTitle(bool ascending)
     });
 }
 
+/**
+    Function body for sortByTitleLength() method
+*/
 void MovieDatabase::sortByTitleLength(bool ascending)
 {
     ascending?
@@ -100,6 +104,9 @@ void MovieDatabase::sortByTitleLength(bool ascending)
     });
 }
 
+/**
+    Function body for sortByYear() method
+*/
 void MovieDatabase::sortByYear(bool ascending)
 {
     ascending?
@@ -116,6 +123,9 @@ void MovieDatabase::sortByYear(bool ascending)
     });
 }
 
+/**
+    Function body for sortByCertificate() method
+*/
 void MovieDatabase::sortByCertificate(bool ascending)
 {
     ascending?
@@ -132,6 +142,9 @@ void MovieDatabase::sortByCertificate(bool ascending)
     });
 }
 
+/**
+    Function body for sortByDuration() method
+*/
 void MovieDatabase::sortByDuration(bool ascending)
 {
     ascending?
@@ -148,6 +161,9 @@ void MovieDatabase::sortByDuration(bool ascending)
     });
 }
 
+/**
+    Function body for sortByRating() method
+*/
 void MovieDatabase::sortByRating(bool ascending)
 {
     ascending?
@@ -164,6 +180,9 @@ void MovieDatabase::sortByRating(bool ascending)
     });
 }
 
+/**
+    Function body for filterByPredicate() method
+*/
 MovieDatabase MovieDatabase::filterByPredicate(Filter filter, string predicate)
 {
     const map<Filter, function<bool(shared_ptr<Movie>)> > filterMap =
@@ -192,7 +211,6 @@ MovieDatabase MovieDatabase::filterByPredicate(Filter filter, string predicate)
 
             { Filter::GENRE, [predicate](shared_ptr<Movie> movie)
             {
-                Genre genre;
                 ostringstream os(predicate);
 
                 os << movie->getGenre();
@@ -211,10 +229,15 @@ MovieDatabase MovieDatabase::filterByPredicate(Filter filter, string predicate)
             } },
     };
 
-    MovieDatabase filtered;
+    MovieDatabase filteredDatabase;
 
     copy_if(movieList.begin(),movieList.end(),
-            back_inserter(filtered.movieList), filterMap.at(filter));
+            back_inserter(filteredDatabase.movieList), filterMap.at(filter));
 
-    return filtered;
+    if(filteredDatabase.getMovieList().size() == 0)
+    {
+        cerr << "No matching movie(s) found!";
+    }
+
+    return filteredDatabase;
 }
