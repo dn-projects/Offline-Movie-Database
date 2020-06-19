@@ -3,16 +3,18 @@
 
  Include     : Movie.hpp
 
- Description : MovieDatabase header file contains an eum class to allow a user
-               to choose a predicate to filter on. MovieDatabase class acts as a
-               database by implementing a vector that stores Movie objects. The
-               class overloads the input and output operators to allow the class
-               to add a film entry to the database as well as print out all the
-               films in the database. The class also has the functionality of
-               sorting and filtering the database to answer specific queries
-               about the films in the database.
-
-               also has union
+ Description : MovieDatabase class acts as a database by implementing a vector
+               that stores shared pointers to Movie objects. The class overloads
+               the input and output operators to allow the class to add a film
+               entry from an input stream to the database as well as output all
+               films in the database to an output stream. MovieDatabase class
+               implements functions to allow adding movies to the database as
+               well as removing movies from the database. The class has the
+               functionality of sorting and filtering the database to retrieve
+               specific movies that satisfy the sorting/filter criteria. A enum
+               class is used to allow a user to choose a predicate to filter
+               the database on. A union is used to act as a 'test harness' and
+               can be called to test functionality of the MovieDatabase class.
 
  Author      : Dovydas Novikovas
 
@@ -24,8 +26,6 @@
                one or multiple genres the sorting order will be too ambiguous
                and will not provide much clarity to the sorting order.
 *******************************************************************************/
-
-//TODO finish header comment
 
 #ifndef CPP_COURSEWORK_MOVIEDATABASE_HPP
 #define CPP_COURSEWORK_MOVIEDATABASE_HPP
@@ -163,80 +163,96 @@ public:
         sortByYear(true);
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-//-------------------------------------------------------------------------------------------------------------------------------------------
     /**
-     * Sorts the movieDatabase by comapring two movie titles
+     * Sorts movieList using std::sort function, using movie titles as the
+     * comparison. A true boolean is passed in as an argument to sort movieList
+     * in ascending order, false for descending.
      *
-     * @param ascending
+     * @param ascending - True to sort in ascending order, false for descending
      */
     void sortByTitle(bool ascending);
 
     /**
+     * Sorts movieList using std::sort function, using the length of a movies
+     * title as the comparison. A true boolean is passed in as an argument to
+     * sort movieList in ascending order, false for descending.
      *
-     * @param ascending
+     * @param ascending - True to sort in ascending order, false for descending
      */
     void sortByTitleLength(bool ascending);
 
     /**
+     * Sorts movieList using std::sort function, using the overriden relational
+     * operator for Movie object (Movie class overloaded '<' '>' operators) as
+     * the comparison. A true boolean is passed in as an argument to sort
+     * movieList in ascending order, false for descending.
      *
-     * @param ascending
+     * @param ascending - True to sort in ascending order, false for descending
      */
     void sortByYear(bool ascending);
 
     /**
+     * Sorts movieList using std::sort function, using movie certificates as the
+     * comparison. A true boolean is passed in as an argument to sort movieList
+     * in ascending order, false for descending.
      *
-     * @param ascending
+     * @param ascending - True to sort in ascending order, false for descending
      */
     void sortByCertificate(bool ascending);
 
     /**
+     * Sorts movieList using std::sort function, using movie duration as the
+     * comparison. A true boolean is passed in as an argument to sort movieList
+     * in ascending order, false for descending.
      *
-     * @param ascending
+     * @param ascending - True to sort in ascending order, false for descending
      */
     void sortByDuration(bool ascending);
 
     /**
+     * Sorts movieList using std::sort function, using movie rating as the
+     * comparison. A true boolean is passed in as an argument to sort movieList
+     * in ascending order, false for descending.
      *
-     * @param ascending
+     * @param ascending - True to sort in ascending order, false for descending
      */
     void sortByRating(bool ascending);
 
     /**
+     * Function allows for a user to filter the database using a predicate. The
+     * function accepts a enum to specific on what condition to filter on and a
+     * predicate to search for a match for each movie in the database. The
+     * function implements a map with enums as the key and lambdas that check
+     * each movie entry for the predicate as the values. The function iterates
+     * through each movie in the database adding only the movies that the lambda
+     * expression returned true for a match for the predicate. If no movies
+     * found then error message is printed.
      *
-     * @param filter
-     * @param predicate
-     * @return
+     * @param filter    - enum to specify what condition to filter by
+     * @param predicate - string that is searched for match in each movie entry
+     *                    in the Database
+     * @return MovieDatabase with all the successful matching results
      */
     MovieDatabase filterByPredicate(Filter filter, string predicate);
 };
 
 /**
- * Overloading the input operator to read a input stream and for each line in
- * the stream convert the string (a film entry) into a Movie object adding the
- * object to a vector of Movies.
+ * Overloading the input operator to read a input stream. The function reads a
+ * line from the input stream and generates a new shared pointer that points to
+ * a Movie object made from a string in the input stream. Then the function uses
+ * a function to add the pointer to the MovieDatabase. If input stream fails
+ * then error message is printed.
  *
  * @param is            - input stream with movie entries
- * @param movieDatabase - object to add movies to
+ * @param movieDatabase - object that stores pointers to Movie objects
  * @return the input stream after populating MovieDatabase
  */
 istream& operator>>(istream& is, MovieDatabase& movieDatabase);
 
 /**
- * Overloading the output operator to iterate through every element in the
- * vector in MovieDatabase.
+ * Overloading the output operator to iterate through each shared pointer
+ * (that points to a Movie object) in movieList and return the Movie to the
+ * output stream. Will print error message if movieList is empty.
  *
  * @param os            - output stream with all the films in the database
  * @param movieDatabase - object storing films in database

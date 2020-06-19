@@ -199,6 +199,7 @@ MovieDatabase MovieDatabase::filterByPredicate(Filter filter, string predicate)
 
             { Filter::CERTIFICATE, [predicate](shared_ptr<Movie> movie)
             {
+                // stringstream used to turn predicate into Certificate type
                 Certificate certificate;
                 // char added before the predicate because input operator
                 // removes first character
@@ -211,6 +212,8 @@ MovieDatabase MovieDatabase::filterByPredicate(Filter filter, string predicate)
 
             { Filter::GENRE, [predicate](shared_ptr<Movie> movie)
             {
+                // ostringstream used to convert Genre into string so predicate
+                // can be checked in genre
                 ostringstream os(predicate);
 
                 os << movie->getGenre();
@@ -220,11 +223,13 @@ MovieDatabase MovieDatabase::filterByPredicate(Filter filter, string predicate)
 
             { Filter::DURATION, [predicate](shared_ptr<Movie> movie)
             {
+                // casting string to match duration type (int)
                 return movie->getDuration() == stoi(predicate);
             } },
 
             { Filter::RATING, [predicate](shared_ptr<Movie> movie)
             {
+                // casting string to match duration type (int)
                 return movie->getRating() == stoi(predicate);
             } },
     };
