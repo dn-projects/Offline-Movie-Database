@@ -1,7 +1,7 @@
 /*******************************************************************************
  File        : MovieDatabase.cpp
 
- Include     : MovieDatabase.hpp, Movie.hpp
+ Include     : MovieDatabase.h, Movie.h
 
  Description : Contains the implementations for the functions, input operator
                and output operator for MovieDatabase.
@@ -12,8 +12,8 @@
 *******************************************************************************/
 
 #include <iostream>
-#include "MovieDatabase.hpp"
-#include "Movie.hpp"
+#include "MovieDatabase.h"
+#include "Movie.h"
 
 using namespace std;
 

@@ -1,7 +1,7 @@
 /*******************************************************************************
  File        : main.cpp
 
- Include     : Movie.hpp, MovieDatabase.hpp
+ Include     : Movie.h, MovieDatabase.h
 
  Description : The class contains a main method which will be used for running
                the functionality of the classes @Movie and @MovieDatabase.
@@ -18,8 +18,8 @@
 
 #include <iostream>
 #include <fstream>
-#include "Movie.hpp"
-#include "MovieDatabase.hpp"
+#include "Movie.h"
+#include "MovieDatabase.h"
 
 using namespace std;
 

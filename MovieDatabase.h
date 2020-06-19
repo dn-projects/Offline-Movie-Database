@@ -1,7 +1,7 @@
 /*******************************************************************************
- File        : MovieDatabase.hpp
+ File        : MovieDatabase.h
 
- Include     : Movie.hpp
+ Include     : Movie.h
 
  Description : MovieDatabase class acts as a database by implementing a vector
                that stores shared pointers to Movie objects. The class overloads
@@ -27,14 +27,13 @@
                and will not provide much clarity to the sorting order.
 *******************************************************************************/
 
-#ifndef CPP_COURSEWORK_MOVIEDATABASE_HPP
-#define CPP_COURSEWORK_MOVIEDATABASE_HPP
+#ifndef CPP_COURSEWORK_MOVIEDATABASE_H
+#define CPP_COURSEWORK_MOVIEDATABASE_H
 
 #include <memory>
 #include <vector>
 #include <map>
-
-#include "Movie.hpp"
+#include "Movie.h"
 
 using namespace std;
 
@@ -393,4 +392,4 @@ union RunMovieDatabaseTestHarness
     }
 };
 
-#endif //CPP_COURSEWORK_MOVIEDATABASE_HPP
+#endif //CPP_COURSEWORK_MOVIEDATABASE_H

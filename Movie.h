@@ -1,5 +1,5 @@
 /*******************************************************************************
- File        : Movie.hpp
+ File        : Movie.h
 
  Description : Movie header file contains a enum class to store certificates, a
                genre struct to set the genres a Movie object has and a Movie
@@ -25,8 +25,8 @@
 
 *******************************************************************************/
 
-#ifndef CPP_COURSEWORK_MOVIE_HPP
-#define CPP_COURSEWORK_MOVIE_HPP
+#ifndef CPP_COURSEWORK_MOVIE_H
+#define CPP_COURSEWORK_MOVIE_H
 
 #include <sstream>
 #include <ostream>
@@ -358,4 +358,4 @@ union RunMovieTestHarness
     }
 };
 
-#endif //CPP_COURSEWORK_MOVIE_HPP
+#endif //CPP_COURSEWORK_MOVIE_H

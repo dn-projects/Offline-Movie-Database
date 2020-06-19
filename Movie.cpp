@@ -1,7 +1,7 @@
 /*******************************************************************************
  File        : Movie.cpp
 
- Include     : Movie.hpp
+ Include     : Movie.h
 
  Description : Contains two maps that help with conversions between strings and
                certificates and also the implementations for the overloaded
@@ -16,7 +16,7 @@
 #include <iostream>
 #include <iomanip>
 #include <map>
-#include "Movie.hpp"
+#include "Movie.h"
 
 using namespace std;
 
